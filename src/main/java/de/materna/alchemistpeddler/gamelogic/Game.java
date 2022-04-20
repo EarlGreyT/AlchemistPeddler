@@ -12,10 +12,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * Class that will handle Game rules and communication with the UI
  */
 public class Game implements PlayerEventListener {
-
   public static final int MAX_DAYS = 30;
-  private final Player player = new Player();
-  private final int sumToWin = player.getCurrency()*10;
+  private static final Player player = new Player();
+  private static final int sumToWin = player.getCurrency()*10;
   private int gameDay = 0;
   private final GameStateListener gameStateListener;
   private final HashMap<String, City> cities = new HashMap<>();
