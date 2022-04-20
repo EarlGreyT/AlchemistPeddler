@@ -17,4 +17,5 @@ public interface PlayerEventGenerator {
     subscriber.getUpdate(event);
   }
 
+
 }
