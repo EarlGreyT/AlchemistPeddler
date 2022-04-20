@@ -1,11 +1,14 @@
 package de.materna.alchemistpeddler.gamelogic;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * City keeps track of how many potions are available to buy, how many are produced and consumed on
  * a daily basis. This is used to calculate the local price of a potion
  */
 public class City {
-
+  public static final int MIN_AMOUNT = 20;
+  public static final int MAX_AMOUNT = 50;
   public static final int NUMBER_OF_POTION_KINDS = Potion.values().length;
   public static final int MIN_PRICE = 10;
   private final int[] potionProductions = new int[NUMBER_OF_POTION_KINDS];
@@ -15,6 +18,11 @@ public class City {
 
   public City(String name) {
     this.name = name;
+    for (int i = 0; i < potionAmounts.length; i++) {
+      potionAmounts[i] = ThreadLocalRandom.current().nextInt(MIN_AMOUNT, MAX_AMOUNT + 1);
+      potionProductions[i] = ThreadLocalRandom.current().nextInt(potionAmounts[i]/4, potionAmounts[i]/2);
+      potionConsumptions[i] = ThreadLocalRandom.current().nextInt(potionAmounts[i]/4, potionAmounts[i]/2);
+    }
   }
 
   public String getName() {
@@ -93,5 +101,13 @@ public class City {
       potionAmounts[i] -= potionConsumptions[i];
       potionAmounts[i] = Math.max(potionAmounts[i], 0);
     }
+  }
+
+  public int[] getPotionProductions() {
+    return potionProductions;
+  }
+
+  public int[] getPotionConsumptions() {
+    return potionConsumptions;
   }
 }
