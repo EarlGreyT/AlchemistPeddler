@@ -1,8 +1,8 @@
-package de.materna.alchemistpeddler.gamelogic;
+package de.materna.alchemistpeddler.gameuicommunication;
 
 import java.util.ArrayList;
 
-public interface PlayerEventGenerator {
+public interface PlayerEventGenerator extends PlayerRecordListener {
   ArrayList<PlayerEventListener> subscribers = new ArrayList<>();
   default void addSubscriber(PlayerEventListener listener){
     subscribers.add(listener);

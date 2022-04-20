@@ -1,5 +1,10 @@
 package de.materna.alchemistpeddler.gamelogic;
 
+import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
+import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
+import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;
+import de.materna.alchemistpeddler.gameuicommunication.PlayerRecord;
+import de.materna.alchemistpeddler.gameuicommunication.PlayerRecordListener;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,14 +13,16 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
 
-  private int sumToWin;
-  private int gameDay = 0;
+  public static final int MAX_DAYS = 30;
   private final Player player = new Player();
+  private final int sumToWin = player.getCurrency()*10;
+  private int gameDay = 0;
+  private final PlayerRecordListener playerRecordListener;
   private final HashMap<String, City> cities = new HashMap<>();
 
   public Game(PlayerEventGenerator generator) {
+    playerRecordListener = generator;
     subscribeTo(generator);
-    sumToWin = player.getCurrency()*10;
     for (CITY_NAMES value : CITY_NAMES.values()) {
       cities.put(value.cityName, new City(value.cityName));
     }
@@ -28,15 +35,30 @@ public class Game implements PlayerEventListener {
   @Override
   public void getUpdate(PlayerEvent event) {
     switch (event.action()) {
-      case BUY -> player.buy(Potion.values()[Integer.parseInt(event.msg())], event.amount());
-      case SELL -> player.sell(Potion.values()[Integer.parseInt(event.msg())], event.amount());
+      case BUY -> {
+        player.buy(Potion.values()[Integer.parseInt(event.msg())], event.amount());
+        playerRecordListener.getPlayerRecord(new PlayerRecord(player));
+      }
+      case SELL -> {
+        player.sell(Potion.values()[Integer.parseInt(event.msg())], event.amount());
+        playerRecordListener.getPlayerRecord(new PlayerRecord(player));
+      }
       case TRAVEL -> {
-        gameDay++;
-        cities.forEach((name, city) -> city.update());
+        nextDay();
         player.travel(cities.get(event.msg()));
         player.setCurrency(player.getCurrency() - event.amount());
+        playerRecordListener.getPlayerRecord(new PlayerRecord(player));
       }
     }
+  }
+  private void nextDay(){
+    gameDay++;
+    cities.forEach((name, city) -> city.update());
+    checkWinCondition();
+  }
+
+  private void checkWinCondition() {
+    player.setWon(gameDay> MAX_DAYS && player.getCurrency() >= sumToWin);
   }
 
   public int getGameDay() {
@@ -53,5 +75,9 @@ public class Game implements PlayerEventListener {
 
   public HashMap<String, City> getCities() {
     return cities;
+  }
+
+  public int getSumToWin() {
+    return sumToWin;
   }
 }

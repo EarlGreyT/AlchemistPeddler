@@ -6,9 +6,18 @@ public class Player {
   private City location;
   private int potionCapacity = 10;
   private int currency = 500;
-  private int[] inventory = new int[Potion.values().length];
+  private final int[] inventory = new int[Potion.values().length];
+  private boolean won = false;
   public City getLocation() {
     return location;
+  }
+
+  public boolean hasWon() {
+    return won;
+  }
+
+  public void setWon(boolean won) {
+    this.won = won;
   }
 
   public boolean travel(City dest){
@@ -33,6 +42,10 @@ public class Player {
 
   public void setCurrency(int currency) {
     this.currency = currency;
+  }
+
+  public int[] getInventory() {
+    return inventory;
   }
 
   private boolean checkInventoryCapacity(int amount){
