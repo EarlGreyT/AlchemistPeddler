@@ -7,15 +7,14 @@ import java.util.concurrent.ThreadLocalRandom;
  * Class that will handle communication between all GameObjects
  */
 public class Game implements PlayerEventListener {
-
-  private int sumToWin;
-  private int gameDay = 0;
   private final Player player = new Player();
+  private final int sumToWin = player.getCurrency()*10;
+  private int gameDay = 0;
+
   private final HashMap<String, City> cities = new HashMap<>();
 
   public Game(PlayerEventGenerator generator) {
     subscribeTo(generator);
-    sumToWin = player.getCurrency()*10;
     for (CITY_NAMES value : CITY_NAMES.values()) {
       cities.put(value.cityName, new City(value.cityName));
     }
@@ -53,5 +52,9 @@ public class Game implements PlayerEventListener {
 
   public HashMap<String, City> getCities() {
     return cities;
+  }
+
+  public int getSumToWin() {
+    return sumToWin;
   }
 }
