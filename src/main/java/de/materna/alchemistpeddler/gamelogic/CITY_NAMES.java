@@ -1,6 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
-enum CITY_NAMES {
+public enum CITY_NAMES {
   GOLDSHIRE("Goldshire"),
   HOBBINGEN("Hobbingen"),
   TRISTRAM("Tristram"),

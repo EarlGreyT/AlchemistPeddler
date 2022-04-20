@@ -20,7 +20,7 @@ public class Game implements PlayerEventListener {
   private final HashMap<String, City> cities = new HashMap<>();
 
   public Game(PlayerEventGenerator generator) {
-    gameStateListener = generator;
+    gameStateListener = (GameStateListener) generator;
     subscribeTo(generator);
     for (CITY_NAMES value : CITY_NAMES.values()) {
       cities.put(value.cityName, new City(value.cityName));
@@ -35,16 +35,16 @@ public class Game implements PlayerEventListener {
   public void getUpdate(PlayerEvent event) {
     switch (event.action()) {
       case BUY -> {
-        player.buy(Potion.values()[Integer.parseInt(event.msg())], event.amount());
+        player.buy(Potion.values()[event.what()], event.amount());
         updateGameState();
       }
       case SELL -> {
-        player.sell(Potion.values()[Integer.parseInt(event.msg())], event.amount());
+        player.sell(Potion.values()[event.what()], event.amount());
         updateGameState();
       }
       case TRAVEL -> {
         nextDay();
-        player.travel(cities.get(event.msg()));
+        player.travel(cities.get(CITY_NAMES.values()[event.what()].cityName));
         player.setCurrency(player.getCurrency() - event.amount());
         updateGameState();
       }

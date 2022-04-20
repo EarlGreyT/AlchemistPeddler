@@ -20,12 +20,11 @@ class Player {
     this.won = won;
   }
 
-  boolean travel(City dest){
-    if (CityGraph.routes.get(dest).get(location).cost()<= currency){
+  void travel(City dest){
+    if (CityGraph.routes.get(dest.getName()).get(location.getName()).cost()<= currency){
       location = dest;
-      currency -= CityGraph.routes.get(dest).get(location).cost();
-      return true;
-    } return false;
+      currency -= CityGraph.routes.get(dest.getName()).get(location.getName()).cost();
+    }
   }
 
   int getPotionCapacity() {

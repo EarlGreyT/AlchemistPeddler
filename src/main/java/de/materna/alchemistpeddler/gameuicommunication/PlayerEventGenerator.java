@@ -2,7 +2,7 @@ package de.materna.alchemistpeddler.gameuicommunication;
 
 import java.util.ArrayList;
 
-public interface PlayerEventGenerator extends GameStateListener {
+public interface PlayerEventGenerator {
   ArrayList<PlayerEventListener> subscribers = new ArrayList<>();
   default void addSubscriber(PlayerEventListener listener){
     subscribers.add(listener);
