@@ -5,7 +5,13 @@ import java.util.Collection;
 /**
  * Class that will handle communication between all GameObjects
  */
-public class Game {
+public class Game implements PlayerEventListener {
+
+  @Override
+  public void getUpdate(PlayerEvent event) {
+
+  }
+
   private enum CITY_NAMES {
     GOLDSHIRE("Goldshire"),
     HOBBINGEN("Hobbingen"),
