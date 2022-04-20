@@ -12,6 +12,7 @@ public class City {
   public static final int NUMBER_OF_POTION_KINDS = Potion.values().length;
   public static final int MIN_PRICE = 10;
   public static final int RUNOUT_FACTOR = 2;
+  private int[] potionsBought = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionProductions = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionConsumptions = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionAmounts = new int[NUMBER_OF_POTION_KINDS];
@@ -83,7 +84,10 @@ public class City {
     potionAmounts[potion.ordinal()] = 0;
     return amountSold;
   }
-
+  public int buyPotion(Potion potion, int amount){
+    potionsBought[potion.ordinal()] += Math.max(amount, 0);
+    return Math.max(amount, 0);
+  }
   public int modifyPotionProduction(Potion potion, int productionDelta) {
     int newProductionValue = potionProductions[potion.ordinal()] + productionDelta;
     potionProductions[potion.ordinal()] = Math.max(newProductionValue, 0);
@@ -98,6 +102,7 @@ public class City {
 
   public void update(){
     for (int i = 0; i < potionAmounts.length; i++) {
+      potionAmounts[i] += potionsBought[i];
       potionAmounts[i] += potionProductions[i];
       potionAmounts[i] -= potionConsumptions[i];
       potionAmounts[i] = Math.max(potionAmounts[i], 0);
