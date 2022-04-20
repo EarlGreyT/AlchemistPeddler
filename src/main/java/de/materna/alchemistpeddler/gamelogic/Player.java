@@ -1,5 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
+import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import java.util.Arrays;
 
 class Player {

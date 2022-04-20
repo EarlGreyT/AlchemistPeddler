@@ -3,11 +3,11 @@ package de.materna.alchemistpeddler.gamelogic;
 import de.materna.alchemistpeddler.gamelogic.City;
 import de.materna.alchemistpeddler.gamelogic.Player;
 
-public record PlayerRecord(int currency, int potionCapacity, City location, int[] inventory,
+public record PlayerRecord(int currency, int potionCapacity, CityRecord location, int[] inventory,
                            boolean hasWon) {
 
   public PlayerRecord(Player player) {
-    this(player.getCurrency(), player.getPotionCapacity(), player.getLocation(),
+    this(player.getCurrency(), player.getPotionCapacity(), new CityRecord(player.getLocation()),
         player.getInventory(),
         player.hasWon());
   }

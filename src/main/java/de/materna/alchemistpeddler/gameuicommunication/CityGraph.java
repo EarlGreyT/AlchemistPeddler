@@ -1,12 +1,11 @@
-package de.materna.alchemistpeddler.gamelogic;
+package de.materna.alchemistpeddler.gameuicommunication;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
-class CityGraph {
-  record Route(CITY_NAMES from, CITY_NAMES dest, int cost){}
-  static HashMap<String, HashMap<String, Route>> routes = new HashMap<>();
+public class CityGraph {
+
+  public static HashMap<String, HashMap<String, Route>> routes = new HashMap<>();
   static {
     for (CITY_NAMES from: CITY_NAMES.values()){
       for (CITY_NAMES dest: CITY_NAMES.values()){

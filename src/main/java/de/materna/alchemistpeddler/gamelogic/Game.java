@@ -1,5 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAMES;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;
@@ -13,11 +14,11 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
   public static final int MAX_DAYS = 30;
-  private static final Player player = new Player();
+  static final Player player = new Player();
   private static final int sumToWin = player.getCurrency()*10;
   private int gameDay = 0;
   private final GameStateListener gameStateListener;
-  private final HashMap<String, City> cities = new HashMap<>();
+  static final HashMap<String, City> cities = new HashMap<>();
 
   public Game(PlayerEventGenerator generator) {
     gameStateListener = (GameStateListener) generator;
@@ -51,6 +52,12 @@ public class Game implements PlayerEventListener {
     }
   }
 
+  private void fireEvent(){
+    EventName eventName = EventName.values()[ThreadLocalRandom.current().nextInt(0,EventName.values().length)];
+    GameEvent event = GameEventFactory.buildGameEvent(eventName,
+        ThreadLocalRandom.current().nextInt(0, Math.max(City.NUMBER_OF_POTION_KINDS, MAX_DAYS - gameDay)));
+    gameStateListener.getGameEventNotification(event.process());
+  }
   private void updateGameState() {
     ArrayList<CityRecord> cityRecords = new ArrayList<>();
     cities.forEach((name, city) -> cityRecords.add(new CityRecord(city)));
@@ -61,6 +68,7 @@ public class Game implements PlayerEventListener {
   private void nextDay(){
     gameDay++;
     cities.forEach((name, city) -> city.update());
+    fireEvent();
     checkWinCondition();
   }
 
