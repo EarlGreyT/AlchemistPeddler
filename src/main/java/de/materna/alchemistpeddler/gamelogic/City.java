@@ -7,10 +7,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * a daily basis. This is used to calculate the local price of a potion
  */
 public class City {
-  public static final int MIN_AMOUNT = 20;
-  public static final int MAX_AMOUNT = 50;
+  public static final int MIN_AMOUNT = 5;
+  public static final int MAX_AMOUNT = 200;
   public static final int NUMBER_OF_POTION_KINDS = Potion.values().length;
   public static final int MIN_PRICE = 10;
+  public static final int RUNOUT_FACTOR = 2;
   private final int[] potionProductions = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionConsumptions = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionAmounts = new int[NUMBER_OF_POTION_KINDS];
@@ -60,7 +61,7 @@ public class City {
         / (double) potionProduction;
     potionPrice = (int) Math.floor(potionPrice * productionConsumptionRatio);
     if (potionLastsForDays <= 2) {
-      potionPrice = potionPrice * 2;
+      potionPrice = potionPrice * RUNOUT_FACTOR;
     }
     return Math.max(potionPrice, MIN_PRICE);
   }
