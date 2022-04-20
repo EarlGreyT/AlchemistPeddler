@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CityGraph {
+class CityGraph {
   record Route(CITY_NAMES from, CITY_NAMES dest, int cost){}
   static HashMap<String, HashMap<String, Route>> routes = new HashMap<>();
   static {

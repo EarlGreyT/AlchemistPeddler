@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.ui;
+package de.materna.alchemistpeddler.tui;
 
 import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;

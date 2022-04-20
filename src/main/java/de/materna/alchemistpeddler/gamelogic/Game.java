@@ -3,13 +3,13 @@ package de.materna.alchemistpeddler.gamelogic;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;
-import de.materna.alchemistpeddler.gameuicommunication.PlayerRecord;
-import de.materna.alchemistpeddler.gameuicommunication.PlayerRecordListener;
+import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Class that will handle communication between all GameObjects
+ * Class that will handle Game rules and communication with the UI
  */
 public class Game implements PlayerEventListener {
 
@@ -17,11 +17,11 @@ public class Game implements PlayerEventListener {
   private final Player player = new Player();
   private final int sumToWin = player.getCurrency()*10;
   private int gameDay = 0;
-  private final PlayerRecordListener playerRecordListener;
+  private final GameStateListener gameStateListener;
   private final HashMap<String, City> cities = new HashMap<>();
 
   public Game(PlayerEventGenerator generator) {
-    playerRecordListener = generator;
+    gameStateListener = generator;
     subscribeTo(generator);
     for (CITY_NAMES value : CITY_NAMES.values()) {
       cities.put(value.cityName, new City(value.cityName));
@@ -37,20 +37,28 @@ public class Game implements PlayerEventListener {
     switch (event.action()) {
       case BUY -> {
         player.buy(Potion.values()[Integer.parseInt(event.msg())], event.amount());
-        playerRecordListener.getPlayerRecord(new PlayerRecord(player));
+        updateGameState();
       }
       case SELL -> {
         player.sell(Potion.values()[Integer.parseInt(event.msg())], event.amount());
-        playerRecordListener.getPlayerRecord(new PlayerRecord(player));
+        updateGameState();
       }
       case TRAVEL -> {
         nextDay();
         player.travel(cities.get(event.msg()));
         player.setCurrency(player.getCurrency() - event.amount());
-        playerRecordListener.getPlayerRecord(new PlayerRecord(player));
+        updateGameState();
       }
     }
   }
+
+  private void updateGameState() {
+    ArrayList<CityRecord> cityRecords = new ArrayList<>();
+    cities.forEach((name, city) -> cityRecords.add(new CityRecord(city)));
+    PlayerRecord playerRecord = new PlayerRecord(player);
+    gameStateListener.getGameState(new GameState((CityRecord[]) cityRecords.toArray(), playerRecord, gameDay));
+  }
+
   private void nextDay(){
     gameDay++;
     cities.forEach((name, city) -> city.update());

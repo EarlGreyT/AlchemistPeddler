@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.gameuicommunication;
+package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gamelogic.City;
 import de.materna.alchemistpeddler.gamelogic.Player;

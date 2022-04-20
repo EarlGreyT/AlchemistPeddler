@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * City keeps track of how many potions are available to buy, how many are produced and consumed on
  * a daily basis. This is used to calculate the local price of a potion
  */
-public class City {
+class City {
   public static final int MIN_AMOUNT = 5;
   public static final int MAX_AMOUNT = 200;
   public static final int NUMBER_OF_POTION_KINDS = Potion.values().length;
@@ -18,7 +18,7 @@ public class City {
   private final int[] potionAmounts = new int[NUMBER_OF_POTION_KINDS];
   private final String name;
 
-  public City(String name) {
+  City(String name) {
     this.name = name;
     for (int i = 0; i < potionAmounts.length; i++) {
       potionAmounts[i] = ThreadLocalRandom.current().nextInt(MIN_AMOUNT, MAX_AMOUNT + 1);
@@ -27,7 +27,7 @@ public class City {
     }
   }
 
-  public String getName() {
+  String getName() {
     return name;
   }
 
@@ -37,7 +37,7 @@ public class City {
    * @return int[] potionAmounts with the amount of potion available at potionAmounts[potion.ordinal()]
    * @see Potion
    */
-  public int[] getPotionAmounts() {
+  int[] getPotionAmounts() {
     return potionAmounts;
   }
 
@@ -49,7 +49,7 @@ public class City {
    * @param potion a specific Potion kind.
    * @return Price of a Potion at least MIN_PRICE.
    */
-  public int price(Potion potion) {
+   int price(Potion potion) {
     int potionPrice = potion.basePrice;
     int potionAmount = potionAmounts[potion.ordinal()];
     int potionProduction = potionProductions[potion.ordinal()];
@@ -75,7 +75,7 @@ public class City {
    * @param amount How many potions to sell
    * @return The Number of potions sold
    */
-  public int sellPotion(Potion potion, int amount) {
+  int sellPotion(Potion potion, int amount) {
     if (amount <= potionAmounts[potion.ordinal()]) {
       potionAmounts[potion.ordinal()] -= amount;
       return amount;
@@ -84,23 +84,23 @@ public class City {
     potionAmounts[potion.ordinal()] = 0;
     return amountSold;
   }
-  public int buyPotion(Potion potion, int amount){
+  int buyPotion(Potion potion, int amount){
     potionsBought[potion.ordinal()] += Math.max(amount, 0);
     return Math.max(amount, 0);
   }
-  public int modifyPotionProduction(Potion potion, int productionDelta) {
+  int modifyPotionProduction(Potion potion, int productionDelta) {
     int newProductionValue = potionProductions[potion.ordinal()] + productionDelta;
     potionProductions[potion.ordinal()] = Math.max(newProductionValue, 0);
     return potionProductions[potion.ordinal()];
   }
 
-  public int modifyPotionConsumption(Potion potion, int productionDelta) {
+  int modifyPotionConsumption(Potion potion, int productionDelta) {
     int newConsumptionValue = potionConsumptions[potion.ordinal()] + productionDelta;
     potionConsumptions[potion.ordinal()] = Math.max(newConsumptionValue, 0);
     return potionConsumptions[potion.ordinal()];
   }
 
-  public void update(){
+  void update(){
     for (int i = 0; i < potionAmounts.length; i++) {
       potionAmounts[i] += potionsBought[i];
       potionAmounts[i] += potionProductions[i];
