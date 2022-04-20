@@ -103,6 +103,7 @@ class City {
   void update(){
     for (int i = 0; i < potionAmounts.length; i++) {
       potionAmounts[i] += potionsBought[i];
+      potionsBought[i] = 0;
       potionAmounts[i] += potionProductions[i];
       potionAmounts[i] -= potionConsumptions[i];
       potionAmounts[i] = Math.max(potionAmounts[i], 0);

@@ -13,7 +13,8 @@ public enum Potion {
   INTELLIGENCE(30),
   VIGOR(35),
   VITALITY(40),
-  STAMINA(10);
+  STAMINA(10),
+  FIRE(50);
 
   public final int basePrice;
 
