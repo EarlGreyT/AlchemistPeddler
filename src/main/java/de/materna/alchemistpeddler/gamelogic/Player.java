@@ -1,7 +1,9 @@
 package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class Player {
   private City location;
@@ -64,11 +66,17 @@ class Player {
 
   int sell(Potion potion, int amount) {
     currency += location.price(potion)*amount;
-    return location.buyPotion(potion,amount);
-
+    inventory[potion.ordinal()] = location.buyPotion(potion,amount);
+    return inventory[potion.ordinal()];
   }
 
   void setLocation(City location) {
     this.location = location;
+  }
+
+  public List<Integer> getInventoryAsList() {
+    ArrayList<Integer> inventoryList = new ArrayList<>(inventory.length);
+    Arrays.stream(inventory).forEach(inventoryList::add);
+    return inventoryList;
   }
 }

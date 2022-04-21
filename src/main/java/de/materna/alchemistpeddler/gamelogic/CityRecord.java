@@ -1,22 +1,13 @@
 package de.materna.alchemistpeddler.gamelogic;
 
-import de.materna.alchemistpeddler.gamelogic.City;
+import java.util.List;
 
-public record CityRecord(int[] potionProductions, int[] potionConsumptions, int[] potionAmounts) {
+public record CityRecord(List<Integer> potionProductions, List<Integer> potionConsumptions, List<Integer> potionAmounts) {
   public CityRecord(City city){
-    this(city.getPotionProductions(), city.getPotionConsumptions(), city.getPotionAmounts());
-  }
-  @Override
-  public boolean equals(Object obj) {
-    throw new RuntimeException(new NoSuchMethodException());
-  }
-  @Override
-  public String toString(){
-    throw new RuntimeException(new NoSuchMethodException());
-  }
-
-  @Override
-  public int hashCode() {
-    throw new RuntimeException(new NoSuchMethodException());
+    this(
+        City.getArrAsList(city.getPotionProductions()),
+        City.getArrAsList(city.getPotionConsumptions()),
+        City.getArrAsList(city.getPotionAmounts())
+    );
   }
 }

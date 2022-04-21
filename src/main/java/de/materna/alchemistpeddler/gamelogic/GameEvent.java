@@ -1,13 +1,13 @@
 package de.materna.alchemistpeddler.gamelogic;
 
-public abstract class GameEvent {
-
-
-  public String getMsg() {
-    return msg;
+@FunctionalInterface
+public interface GameEvent<T> {
+  enum EventName {
+    CITY_POTION,
+    POTION,
+    ROB,
+    NULL;
   }
 
-  protected String msg;
-
-  abstract GameEvent process();
+  EventName process(T target);
 }

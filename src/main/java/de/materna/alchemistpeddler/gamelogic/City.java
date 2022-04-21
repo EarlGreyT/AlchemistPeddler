@@ -1,5 +1,8 @@
 package de.materna.alchemistpeddler.gamelogic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -12,7 +15,7 @@ class City {
   public static final int NUMBER_OF_POTION_KINDS = Potion.values().length;
   public static final int MIN_PRICE = 10;
   public static final int RUNOUT_FACTOR = 2;
-  private int[] potionsBought = new int[NUMBER_OF_POTION_KINDS];
+  private final int[] potionsBought = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionProductions = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionConsumptions = new int[NUMBER_OF_POTION_KINDS];
   private final int[] potionAmounts = new int[NUMBER_OF_POTION_KINDS];
@@ -88,16 +91,14 @@ class City {
     potionsBought[potion.ordinal()] += Math.max(amount, 0);
     return Math.max(amount, 0);
   }
-  int modifyPotionProduction(Potion potion, int productionDelta) {
+  void modifyPotionProduction(Potion potion, int productionDelta) {
     int newProductionValue = potionProductions[potion.ordinal()] + productionDelta;
     potionProductions[potion.ordinal()] = Math.max(newProductionValue, 0);
-    return potionProductions[potion.ordinal()];
   }
 
-  int modifyPotionConsumption(Potion potion, int productionDelta) {
+  void modifyPotionConsumption(Potion potion, int productionDelta) {
     int newConsumptionValue = potionConsumptions[potion.ordinal()] + productionDelta;
     potionConsumptions[potion.ordinal()] = Math.max(newConsumptionValue, 0);
-    return potionConsumptions[potion.ordinal()];
   }
 
   void update(){
@@ -110,11 +111,17 @@ class City {
     }
   }
 
-  public int[] getPotionProductions() {
+  int[] getPotionProductions() {
     return potionProductions;
   }
 
-  public int[] getPotionConsumptions() {
+  int[] getPotionConsumptions() {
     return potionConsumptions;
+  }
+
+  public static List<Integer> getArrAsList(int[] arr) {
+    ArrayList<Integer> productionList = new ArrayList<>(arr.length);
+    Arrays.stream(arr).forEach(productionList::add);
+    return productionList;
   }
 }
