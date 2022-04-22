@@ -3,8 +3,6 @@ package de.materna.alchemistpeddler.tui.gamepanels.shops;
 import de.materna.alchemistpeddler.gamelogic.CityRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.tui.TUIApp;
-import de.materna.alchemistpeddler.tui.gamepanels.PotionShopActionPanel;
-import de.materna.alchemistpeddler.tui.gamepanels.TravelActionPanel;
 import java.util.EnumMap;
 
 public class ShopFactory {

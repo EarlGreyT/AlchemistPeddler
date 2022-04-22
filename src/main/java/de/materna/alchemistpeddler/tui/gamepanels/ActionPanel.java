@@ -6,6 +6,8 @@ import com.googlecode.lanterna.gui2.Direction;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
+import de.materna.alchemistpeddler.tui.gamepanels.navigationbuttons.ActionBuyButton;
+import de.materna.alchemistpeddler.tui.gamepanels.navigationbuttons.ActionTravelButton;
 import java.util.ArrayList;
 
 public class ActionPanel extends Panel {
