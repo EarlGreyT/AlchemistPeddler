@@ -14,11 +14,13 @@ class Player {
   private final int[] inventory = new int[Potion.values().length];
   private boolean won = false;
   private int debt = 0;
-
+  private boolean lost = false;
   City getLocation() {
     return location;
   }
-
+  boolean hasLost() {
+    return lost;
+  }
   boolean hasWon() {
     return won;
   }
@@ -26,7 +28,9 @@ class Player {
   void setWon(boolean won) {
     this.won = won;
   }
-
+  void setLost(boolean lost){
+    this.lost = lost;
+  }
   void travel(City dest){
     CITY_NAME locationName = CITY_NAME.valueOf(location.getName().toUpperCase());
     CITY_NAME destName = CITY_NAME.valueOf(dest.getName().toUpperCase());

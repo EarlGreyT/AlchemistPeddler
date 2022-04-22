@@ -110,6 +110,7 @@ public class Game implements PlayerEventListener {
   }
 
   private void checkWinCondition() {
+    player.setLost(gameDay > (MAX_DAYS / 2) && player.getDebt() > 0);
     player.setWon(gameDay > MAX_DAYS && player.getCurrency() >= sumToWin && player.getDebt()<=0);
   }
 
