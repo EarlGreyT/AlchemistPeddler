@@ -1,34 +1,33 @@
 package de.materna.alchemistpeddler.tui.gamePanels;
 
+import com.googlecode.lanterna.gui2.Direction;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 
 public class GamePanel extends Panel {
 
-  private ActionPanel actionPanel;
+  private PlayerPanel playerPanel;
   private LocationPanel locationPanel;
-
+  private EventPanel eventPanel;
   public GamePanel() {
-    setLayoutManager(new LinearLayout());
+    setLayoutManager(new LinearLayout(Direction.HORIZONTAL));
+    Panel playField = new Panel(new LinearLayout());
     locationPanel = new LocationPanel();
-    actionPanel = new ActionPanel();
-    addComponent(locationPanel);
-    addComponent(actionPanel);
+    playerPanel = new PlayerPanel();
+    eventPanel = new EventPanel();
+    addComponent(playField);
+    addComponent(eventPanel);
+    playField.addComponent(locationPanel);
+    playField.addComponent(playerPanel);
   }
 
-  public ActionPanel getActionPanel() {
-    return actionPanel;
-  }
-
-  public void setActionPanel(ActionPanel actionPanel) {
-    this.actionPanel = actionPanel;
+  public PlayerPanel getPlayerPanel() {
+    return playerPanel;
   }
 
   public LocationPanel getDataPanel() {
     return locationPanel;
   }
-
-  public void setDataPanel(LocationPanel locationPanel) {
-    this.locationPanel = locationPanel;
-  }
 }
+
+

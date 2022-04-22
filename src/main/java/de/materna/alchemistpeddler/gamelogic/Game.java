@@ -6,6 +6,7 @@ import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;
 import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
+import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class Game implements PlayerEventListener {
     gameStateListener = (GameStateListener) generator;
     subscribeTo(generator);
     for (CITY_NAMES value : CITY_NAMES.values()) {
-      cities.put(value.cityName, new City(value.cityName));
+      cities.put(value.cityName, new City(value));
     }
     player.setLocation(cities.get(
         CITY_NAMES.values()[
@@ -64,7 +65,7 @@ public class Game implements PlayerEventListener {
     if (randomEventIndex > EventName.values().length - 1) {
       randomEventIndex = EventName.NULL.ordinal();
     }
-    String msg;
+    String msg="";
     EventName eventName = EventName.values()[randomEventIndex];
     GameEvent event = GameEventFactory.buildGameEvent(eventName);
     switch (eventName) {
@@ -80,7 +81,6 @@ public class Game implements PlayerEventListener {
       case POTION -> {
         Potion randomPotion = Potion.values()[ThreadLocalRandom.current().nextInt(Potion.values().length)];
        ((GameEvent<Potion>) event).process(randomPotion);
-       msg= "";
       }
       case ROB -> {
         GameEvent<Player> playerGameEvent = (GameEvent<Player>) event;
@@ -89,7 +89,6 @@ public class Game implements PlayerEventListener {
 
       }
       default -> {
-        msg ="";
         ((GameEvent<Void>) event).process(null);
       }
     }
@@ -112,7 +111,7 @@ public class Game implements PlayerEventListener {
   }
 
   private void checkWinCondition() {
-    player.setWon(gameDay > MAX_DAYS && player.getCurrency() >= sumToWin);
+    player.setWon(gameDay > MAX_DAYS && player.getCurrency() >= sumToWin && player.getDebt()<=0);
   }
 
   public int getGameDay() {

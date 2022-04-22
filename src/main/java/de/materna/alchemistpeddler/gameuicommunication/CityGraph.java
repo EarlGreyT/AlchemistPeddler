@@ -3,6 +3,9 @@ package de.materna.alchemistpeddler.gameuicommunication;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Builds a fully connected Graph of Cities with random travel costs from each city to each other city
+ */
 public class CityGraph {
 
   public static HashMap<String, HashMap<String, Route>> routes = new HashMap<>();
