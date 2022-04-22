@@ -1,12 +1,10 @@
 package de.materna.alchemistpeddler.tui;
 
 import de.materna.alchemistpeddler.gamelogic.Game;
-import de.materna.alchemistpeddler.gamelogic.GameEvent;
 import de.materna.alchemistpeddler.gamelogic.GameState;
 import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
-import de.materna.alchemistpeddler.tui.gamepanels.ShopFactory;
-import java.util.HashMap;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.ShopFactory;
 
 public class GameController implements PlayerEventGenerator, GameStateListener {
   private GameState lastGameState;

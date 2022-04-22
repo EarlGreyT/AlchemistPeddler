@@ -14,7 +14,6 @@ public class LocationPanel extends Panel {
     addComponent(infoPanel);
     addComponent(interactionPanel);
     setLayoutManager(new LinearLayout(Direction.HORIZONTAL));
-
   }
 
   public void setInfoPanel(Panel leftPanel, String text) {

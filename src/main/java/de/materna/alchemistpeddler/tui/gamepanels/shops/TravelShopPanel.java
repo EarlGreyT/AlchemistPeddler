@@ -1,9 +1,11 @@
-package de.materna.alchemistpeddler.tui.gamepanels;
+package de.materna.alchemistpeddler.tui.gamepanels.shops;
 
 import com.googlecode.lanterna.gui2.GridLayout;
 import de.materna.alchemistpeddler.gamelogic.CityRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
+import de.materna.alchemistpeddler.tui.gamepanels.AmountLabel;
+import de.materna.alchemistpeddler.tui.gamepanels.NameLabel;
 
 public class TravelShopPanel extends ShopPanel {
   public TravelShopPanel(CityRecord cityRecord){

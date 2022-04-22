@@ -10,6 +10,8 @@ import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.tui.GameController;
 import de.materna.alchemistpeddler.tui.TUIApp;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.ShopFactory;
+
 public class TravelActionPanel extends Panel {
 
   public TravelActionPanel() {
