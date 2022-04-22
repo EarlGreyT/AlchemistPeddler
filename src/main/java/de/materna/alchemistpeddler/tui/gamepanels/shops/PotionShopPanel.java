@@ -1,14 +1,13 @@
-package de.materna.alchemistpeddler.tui.gamepanels;
+package de.materna.alchemistpeddler.tui.gamepanels.shops;
 
 
 import com.googlecode.lanterna.gui2.GridLayout;
 
-import com.googlecode.lanterna.gui2.Panel;
 import de.materna.alchemistpeddler.gamelogic.CityRecord;
 
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
-
-
+import de.materna.alchemistpeddler.tui.gamepanels.AmountLabel;
+import de.materna.alchemistpeddler.tui.gamepanels.NameLabel;
 
 
 class PotionShopPanel extends ShopPanel {

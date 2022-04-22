@@ -7,6 +7,7 @@ import com.googlecode.lanterna.gui2.Button;
 
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.ShopFactory;
 
 
 public class ActionBuyButton extends Button {
