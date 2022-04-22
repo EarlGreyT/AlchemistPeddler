@@ -1,62 +1,70 @@
 package de.materna.alchemistpeddler.tui.gamePanels;
 
 
-import com.googlecode.lanterna.gui2.Borders;
-import com.googlecode.lanterna.gui2.Component;
-import com.googlecode.lanterna.gui2.Direction;
 import com.googlecode.lanterna.gui2.GridLayout;
 
-import com.googlecode.lanterna.gui2.Label;
-import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 import de.materna.alchemistpeddler.gamelogic.CityRecord;
-import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
-import de.materna.alchemistpeddler.gamelogic.Potion;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAMES;
+import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.tui.TUIApp;
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 
 public class ShopPanel extends Panel {
   private CityRecord cityRecord;
+  private ArrayList<PotionPanel> potionPanels = new ArrayList<>();
   public static class ShopFactory {
-    static HashMap<String, ShopPanel> shops = new HashMap<>();
-    public static ShopPanel getShop(String name) {
-      ShopPanel existingPanel = shops.get(name);
+    static ShopActionPanel shopActionPanel;
+    static EnumMap<CITY_NAMES, ShopPanel> shops = new EnumMap<CITY_NAMES, ShopPanel>(CITY_NAMES.class);
+    public static ShopPanel getShop(CITY_NAMES cityName) {
+      ShopPanel existingPanel = shops.get(cityName);
       if (existingPanel == null) {
         CityRecord cityRecord = (CityRecord) TUIApp.gameController.getLastGameState()
-            .cityRecords().stream().filter(city -> city.name().equals(name)).toArray()[0];
+            .cityRecords().stream().filter(city -> city.name().equals(cityName.cityName)).toArray()[0];
         existingPanel = new ShopPanel(cityRecord);
       } else updateShopLabels();
       return existingPanel;
     }
+    public static ShopActionPanel getShopActionPanel(){
+      if (shopActionPanel == null){
+        shopActionPanel = new ShopActionPanel();
+      }
+      return shopActionPanel;
+    }
     public static void updateShopLabels() {
       for (ShopPanel shopPanel : shops.values()) {
-        PotionPanel potionPanel= (PotionPanel) shopPanel.getChildrenList().get(0);
-        String potionName = ((NameLabel) potionPanel.getChildrenList().get(0)).getText();
-        int potionAmount = shopPanel.cityRecord.potionAmounts().get(Potion.valueOf(potionName).ordinal());
-        int potionPrice = shopPanel.cityRecord.prices().get(Potion.valueOf(potionName).ordinal());
-        AmountLabel potionAmountLabel = (AmountLabel) potionPanel.getChildrenList().get(1);
-        AmountLabel potionPriceLabel = (AmountLabel) potionPanel.getChildrenList().get(2);
-        potionAmountLabel.setText("Amount " + potionAmount);
-        potionPriceLabel.setText("Price "+ potionPrice);
+        for (PotionPanel potionPanel : shopPanel.potionPanels) {
+          String potionName = ((NameLabel) potionPanel.getChildrenList().get(0)).getText();
+          int potionAmount = shopPanel.cityRecord.potionAmounts().get(Potion.valueOf(potionName).ordinal());
+          int potionPrice = shopPanel.cityRecord.prices().get(Potion.valueOf(potionName).ordinal());
+          AmountLabel potionAmountLabel = potionPanel.getAmountLabel();
+          AmountLabel potionPriceLabel = potionPanel.getPriceLabel();
+          potionAmountLabel.setText(potionAmount);
+          potionPriceLabel.setText(potionPrice);
+        }
       }
 
     }
   }
 
-
-
   private ShopPanel(CityRecord cityRecord) {
     super();
     this.cityRecord = cityRecord;
-    setLayoutManager(new GridLayout(Potion.values().length / 3));
+    setLayoutManager(new GridLayout(Potion.values().length / 3)
+        .setHorizontalSpacing(2)
+        .setVerticalSpacing(1)
+    );
     for (Potion potion : Potion.values()) {
       int potionAmount = cityRecord.potionAmounts().get(potion.ordinal());
       int potionPrice = cityRecord.prices().get(potion.ordinal());
-      PotionPanel potionPanel = new PotionPanel(new LinearLayout(Direction.VERTICAL));
-      potionPanel.addComponent(new NameLabel(potion.name()));
-      potionPanel.addComponent(new AmountLabel("Amount "+potionAmount));
-      potionPanel.addComponent(new AmountLabel("Price "+potionPrice));
+      NameLabel nameLabel = new NameLabel(potion.name());
+      AmountLabel amountLabel = new AmountLabel(potionAmount);
+      AmountLabel priceLabel = new AmountLabel("Price");
+      priceLabel.setText(potionPrice);
+      PotionPanel potionPanel = new PotionPanel(nameLabel,amountLabel,priceLabel);
+      potionPanels.add(potionPanel);
       addComponent(potionPanel);
     }
   }

@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.gamelogic;
+package de.materna.alchemistpeddler.gameuicommunication;
 
 /**
  * Enumeration representing different kinds of potions.
@@ -14,7 +14,9 @@ public enum Potion {
   VIGOR(35),
   VITALITY(40),
   STAMINA(10),
+  FROST(50),
   FIRE(50);
+
 
   public final int basePrice;
 

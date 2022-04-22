@@ -16,6 +16,9 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
   public GameState getGameState(GameState gameState) {
     this.lastGameState = gameState;
     ShopPanel.ShopFactory.updateShopLabels();
+    if (TUIApp.gameWindow != null){
+      TUIApp.gameWindow.getGamePanel().getPlayerPanel().getPlayerDataPanel().update(gameState.playerRecord());
+    }
     return GameStateListener.super.getGameState(gameState);
   }
 

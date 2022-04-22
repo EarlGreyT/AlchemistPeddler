@@ -2,7 +2,7 @@ package de.materna.alchemistpeddler.gamelogic;
 
 
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
-import de.materna.alchemistpeddler.gameuicommunication.CITY_NAMES;
+import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 

@@ -1,6 +1,7 @@
 package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
+import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,8 @@ class Player {
   private int currency = 500;
   private final int[] inventory = new int[Potion.values().length];
   private boolean won = false;
+  private int debt = 0;
+
   City getLocation() {
     return location;
   }
@@ -29,7 +32,16 @@ class Player {
       currency -= CityGraph.routes.get(dest.getName()).get(location.getName()).cost();
     }
   }
-
+  void takeLoan(int amount){
+    debt++;
+  }
+  int payLoan(int amount){
+    if (currency >= amount){
+      debt -= amount;
+      currency -= amount;
+      return amount;
+    } return 0;
+  }
   int getPotionCapacity() {
     return potionCapacity;
   }
@@ -66,7 +78,7 @@ class Player {
 
   int sell(Potion potion, int amount) {
     currency += location.price(potion)*amount;
-    inventory[potion.ordinal()] = location.buyPotion(potion,amount);
+    inventory[potion.ordinal()] -= location.buyPotion(potion,amount);
     return inventory[potion.ordinal()];
   }
 
@@ -78,5 +90,9 @@ class Player {
     ArrayList<Integer> inventoryList = new ArrayList<>(inventory.length);
     Arrays.stream(inventory).forEach(inventoryList::add);
     return inventoryList;
+  }
+
+  public int getDebt() {
+    return debt;
   }
 }
