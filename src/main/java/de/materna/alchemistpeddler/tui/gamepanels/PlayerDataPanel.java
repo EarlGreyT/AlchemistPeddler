@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.tui.gamePanels;
+package de.materna.alchemistpeddler.tui.gamepanels;
 
 import com.googlecode.lanterna.gui2.Borders;
 import com.googlecode.lanterna.gui2.Direction;
@@ -9,7 +9,6 @@ import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.tui.TUIApp;
 import java.util.EnumMap;
-import java.util.HashMap;
 
 public class PlayerDataPanel extends Panel {
   Panel playerData = new Panel(new LinearLayout(Direction.VERTICAL)

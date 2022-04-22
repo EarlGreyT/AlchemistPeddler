@@ -1,7 +1,7 @@
 package de.materna.alchemistpeddler.tui;
 
 import com.googlecode.lanterna.gui2.BasicWindow;
-import de.materna.alchemistpeddler.tui.gamePanels.GamePanel;
+import de.materna.alchemistpeddler.tui.gamepanels.GamePanel;
 import java.util.List;
 
 

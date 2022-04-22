@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.tui.gamePanels;
+package de.materna.alchemistpeddler.tui.gamepanels;
 
 import com.googlecode.lanterna.gui2.Direction;
 import com.googlecode.lanterna.gui2.LinearLayout;
@@ -25,7 +25,7 @@ public class GamePanel extends Panel {
     return playerPanel;
   }
 
-  public LocationPanel getDataPanel() {
+  public LocationPanel getLocationPanel() {
     return locationPanel;
   }
 }

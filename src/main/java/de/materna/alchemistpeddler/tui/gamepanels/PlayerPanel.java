@@ -1,8 +1,7 @@
-package de.materna.alchemistpeddler.tui.gamePanels;
+package de.materna.alchemistpeddler.tui.gamepanels;
 
 import com.googlecode.lanterna.gui2.Borders;
 import com.googlecode.lanterna.gui2.Component;
-import com.googlecode.lanterna.gui2.Container;
 import com.googlecode.lanterna.gui2.Direction;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;

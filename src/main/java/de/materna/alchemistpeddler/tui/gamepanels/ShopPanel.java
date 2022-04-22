@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.tui.gamePanels;
+package de.materna.alchemistpeddler.tui.gamepanels;
 
 
 import com.googlecode.lanterna.gui2.GridLayout;
@@ -10,7 +10,6 @@ import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.tui.TUIApp;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 
 public class ShopPanel extends Panel {
   private CityRecord cityRecord;
