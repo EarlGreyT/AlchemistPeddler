@@ -1,13 +1,17 @@
 package de.materna.alchemistpeddler.gamelogic;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public record CityRecord(List<Integer> potionProductions, List<Integer> potionConsumptions, List<Integer> potionAmounts) {
+public record CityRecord(List<Integer> potionProductions, List<Integer> potionConsumptions, List<Integer> potionAmounts, List<Integer> prices,String name) {
   public CityRecord(City city){
     this(
         City.getArrAsList(city.getPotionProductions()),
         City.getArrAsList(city.getPotionConsumptions()),
-        City.getArrAsList(city.getPotionAmounts())
+        City.getArrAsList(city.getPotionAmounts()),
+        city.getPriceList(),
+        city.getName()
     );
   }
 }

@@ -33,13 +33,16 @@ public class Game implements PlayerEventListener {
         CITY_NAMES.values()[
             ThreadLocalRandom.current().nextInt(0, cities.size())].cityName)
     );
+    updateGameState();
   }
 
   @Override
   public void getUpdate(PlayerEvent event) {
     switch (event.action()) {
       case BUY -> {
-        player.buy(Potion.values()[event.what()], event.amount());
+        System.out.println(Potion.values()[event.what()] +" " +event.amount());
+        System.out.println("Bought: "+player.buy(Potion.values()[event.what()], event.amount()));
+        System.out.println(player.getLocation().getName()+ " has left: "+ player.getLocation().getPotionAmounts()[event.what()]);
         updateGameState();
       }
       case SELL -> {

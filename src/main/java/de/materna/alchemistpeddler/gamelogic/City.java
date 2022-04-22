@@ -80,7 +80,7 @@ class City {
    */
   int sellPotion(Potion potion, int amount) {
     if (amount <= potionAmounts[potion.ordinal()]) {
-      potionAmounts[potion.ordinal()] -= amount;
+      potionAmounts[potion.ordinal()] = potionAmounts[potion.ordinal()] - amount;
       return amount;
     }
     int amountSold = amount - potionAmounts[potion.ordinal()];
@@ -88,7 +88,7 @@ class City {
     return amountSold;
   }
   int buyPotion(Potion potion, int amount){
-    potionsBought[potion.ordinal()] += Math.max(amount, 0);
+    potionsBought[potion.ordinal()] = potionsBought[potion.ordinal()] + Math.max(amount, 0);
     return Math.max(amount, 0);
   }
   void modifyPotionProduction(Potion potion, int productionDelta) {
@@ -123,5 +123,13 @@ class City {
     ArrayList<Integer> productionList = new ArrayList<>(arr.length);
     Arrays.stream(arr).forEach(productionList::add);
     return productionList;
+  }
+
+  public List<Integer> getPriceList() {
+    ArrayList<Integer> priceList = new ArrayList<>();
+    for (Potion potion : Potion.values()) {
+      priceList.add(price(potion));
+    }
+    return priceList;
   }
 }
