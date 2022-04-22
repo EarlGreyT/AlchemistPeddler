@@ -1,7 +1,7 @@
 package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
-import de.materna.alchemistpeddler.gameuicommunication.CITY_NAMES;
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;
@@ -27,11 +27,11 @@ public class Game implements PlayerEventListener {
   public Game(PlayerEventGenerator generator) {
     gameStateListener = (GameStateListener) generator;
     subscribeTo(generator);
-    for (CITY_NAMES value : CITY_NAMES.values()) {
+    for (CITY_NAME value : CITY_NAME.values()) {
       cities.put(value.cityName, new City(value));
     }
     player.setLocation(cities.get(
-        CITY_NAMES.values()[
+        CITY_NAME.values()[
             ThreadLocalRandom.current().nextInt(0, cities.size())].cityName)
     );
     updateGameState();
@@ -52,8 +52,7 @@ public class Game implements PlayerEventListener {
       }
       case TRAVEL -> {
         nextDay();
-        player.travel(cities.get(CITY_NAMES.values()[event.what()].cityName));
-        player.setCurrency(player.getCurrency() - event.amount());
+        player.travel(cities.get(CITY_NAME.values()[event.what()].cityName));
         updateGameState();
       }
     }
@@ -70,8 +69,8 @@ public class Game implements PlayerEventListener {
     GameEvent event = GameEventFactory.buildGameEvent(eventName);
     switch (eventName) {
       case CITY_POTION -> {
-        City randomCity = cities.get(CITY_NAMES.values()[
-            ThreadLocalRandom.current().nextInt(CITY_NAMES.values().length)
+        City randomCity = cities.get(CITY_NAME.values()[
+            ThreadLocalRandom.current().nextInt(CITY_NAME.values().length)
             ].cityName);
         ((GameEvent<City>) event).process(randomCity);
         msg = "Consumption: " + Arrays.toString(randomCity.getPotionConsumptions()) + ", Production: "

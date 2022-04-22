@@ -4,7 +4,7 @@ import de.materna.alchemistpeddler.gamelogic.GameEvent;
 import de.materna.alchemistpeddler.gamelogic.GameState;
 import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
-import de.materna.alchemistpeddler.tui.gamepanels.ShopPanel;
+import de.materna.alchemistpeddler.tui.gamepanels.ShopFactory;
 import java.util.HashMap;
 
 public class GameController implements PlayerEventGenerator, GameStateListener {
@@ -12,7 +12,7 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
   @Override
   public GameState getGameState(GameState gameState) {
     this.lastGameState = gameState;
-    ShopPanel.ShopFactory.updateShopLabels();
+    ShopFactory.updateShopLabels();
     if (TUIApp.gameWindow != null){
       TUIApp.gameWindow.getGamePanel().getPlayerPanel().getPlayerDataPanel().update(gameState.playerRecord());
     }
@@ -23,9 +23,5 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
     return lastGameState;
   }
 
-  @Override
-  public HashMap<GameEvent, String> getGameEventNotification(GameEvent event,String  msg) {
-    System.out.println(msg);
-    return GameStateListener.super.getGameEventNotification(event);
-  }
+
 }

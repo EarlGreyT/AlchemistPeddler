@@ -9,7 +9,7 @@ import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import java.util.ArrayList;
 
 public class ActionPanel extends Panel {
-  private ArrayList<Button> myLabels = new ArrayList<>();
+  private ArrayList<Button> buttons = new ArrayList<>();
   public ActionPanel() {
     super();
     setFillColorOverride(ANSI.BLACK);
@@ -19,15 +19,17 @@ public class ActionPanel extends Panel {
         case BUY -> {
           ActionBuyButton actionButton = new ActionBuyButton();
           actionButton.addTo(this);
-          myLabels.add(actionButton);
+          buttons.add(actionButton);
         }
         case TRAVEL -> {
           ActionTravelButton travelButton = new ActionTravelButton();
+          travelButton.addTo(this);
+          buttons.add(travelButton);
         }
         default -> {
           Button actionButton = new Button(action.name());
           actionButton.addTo(this);
-          myLabels.add(actionButton);
+          buttons.add(actionButton);
         }
       }
 
@@ -38,6 +40,6 @@ public class ActionPanel extends Panel {
 
 
   public void setMyLabel(String labelText, int labelIndex) {
-    myLabels.get(labelIndex).setLabel(labelText);
+    buttons.get(labelIndex).setLabel(labelText);
   }
 }

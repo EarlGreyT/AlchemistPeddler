@@ -14,6 +14,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import de.materna.alchemistpeddler.gamelogic.Game;
+import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import java.io.IOException;
 import java.util.Arrays;
@@ -25,6 +26,7 @@ public class TUIApp implements PlayerEventGenerator {
   public static GameWindow gameWindow;
   public static WindowBasedTextGUI gui;
   public static void main(String[] args) throws IOException, InterruptedException {
+    CityGraph.buildGraph();
     Game game = new Game(gameController);
     Terminal term = new DefaultTerminalFactory().createTerminal();
     Screen screen = new TerminalScreen(term);

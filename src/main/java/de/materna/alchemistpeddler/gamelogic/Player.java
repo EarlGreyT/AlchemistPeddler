@@ -1,6 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
-import de.materna.alchemistpeddler.gameuicommunication.CITY_NAMES;
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import java.util.ArrayList;
@@ -28,11 +28,12 @@ class Player {
   }
 
   void travel(City dest){
-    CITY_NAMES locationName = CITY_NAMES.valueOf(location.getName().toUpperCase());
-    CITY_NAMES destName = CITY_NAMES.valueOf(dest.getName().toUpperCase());
-    if (CityGraph.routes.get(destName).get(locationName).cost()<= currency){
+    CITY_NAME locationName = CITY_NAME.valueOf(location.getName().toUpperCase());
+    CITY_NAME destName = CITY_NAME.valueOf(dest.getName().toUpperCase());
+    int travelCost = CityGraph.routes.get(locationName).get(destName).cost();
+    if (travelCost <= currency){
       location = dest;
-      currency -= CityGraph.routes.get(destName).get(locationName).cost();
+      currency = currency - travelCost;
     }
   }
   void takeLoan(int amount){

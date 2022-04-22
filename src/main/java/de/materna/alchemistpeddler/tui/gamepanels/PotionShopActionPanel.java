@@ -5,19 +5,18 @@ import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 import com.googlecode.lanterna.gui2.dialogs.TextInputDialogBuilder;
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
-import de.materna.alchemistpeddler.gameuicommunication.CITY_NAMES;
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.tui.GameController;
 import de.materna.alchemistpeddler.tui.TUIApp;
-import de.materna.alchemistpeddler.tui.gamepanels.ShopPanel.ShopFactory;
 import java.util.regex.Pattern;
 
 
-public class ShopActionPanel extends Panel {
+public class PotionShopActionPanel extends Panel {
 
-  public ShopActionPanel() {
+  public PotionShopActionPanel() {
     setLayoutManager(new LinearLayout().setSpacing(1));
     for (Potion potion : Potion.values()) {
       Button buyPotionButton = new Button("buy " + potion.name(),
@@ -32,8 +31,8 @@ public class ShopActionPanel extends Panel {
             GameController gameController =TUIApp.gameController;
             PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
             gameController.inform(GameController.subscribers.get(0), new PlayerEvent(PlayerAction.BUY, potion.ordinal(),amount));
-            CITY_NAMES city =CITY_NAMES.valueOf(playerRecord.location().name().toUpperCase());
-            TUIApp.gameWindow.getGamePanel().getLocationPanel().setInfoPanel(ShopFactory.getShop(city), city.cityName);
+            CITY_NAME city = CITY_NAME.valueOf(playerRecord.location().name().toUpperCase());
+            TUIApp.gameWindow.getGamePanel().getLocationPanel().setInfoPanel(ShopFactory.getPotionShop(city), city.cityName);
           }
       );
       addComponent(buyPotionButton);

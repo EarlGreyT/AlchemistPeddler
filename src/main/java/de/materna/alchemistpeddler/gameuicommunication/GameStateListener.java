@@ -15,6 +15,7 @@ public interface GameStateListener {
 
   default HashMap<GameEvent, String>  getGameEventNotification(GameEvent event, String msg){
     HashMap<GameEvent, String> eventHashMap = new HashMap<>();
+    System.out.println(msg);
     eventHashMap.put(event,msg);
     return eventHashMap;
   }

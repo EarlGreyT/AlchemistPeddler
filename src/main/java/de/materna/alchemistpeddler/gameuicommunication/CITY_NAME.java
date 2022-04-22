@@ -1,6 +1,6 @@
 package de.materna.alchemistpeddler.gameuicommunication;
 
-public enum CITY_NAMES {
+public enum CITY_NAME {
   GOLDSHIRE("Goldshire"),
   HOBBINGEN("Hobbingen"),
   TRISTRAM("Tristram"),
@@ -8,7 +8,7 @@ public enum CITY_NAMES {
   ATLANTIS("Atlantis");
   public final String cityName;
 
-  CITY_NAMES(String cityName) {
+  CITY_NAME(String cityName) {
     this.cityName = cityName;
   }
 }

@@ -1,6 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
-import de.materna.alchemistpeddler.gameuicommunication.CITY_NAMES;
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +23,7 @@ class City {
   private final int[] potionAmounts = new int[NUMBER_OF_POTION_KINDS];
   private final String name;
 
-  City(CITY_NAMES name) {
+  City(CITY_NAME name) {
     this.name = name.cityName;
     for (int i = 0; i < potionAmounts.length; i++) {
       potionAmounts[i] = ThreadLocalRandom.current().nextInt(MIN_AMOUNT, MAX_AMOUNT + 1);

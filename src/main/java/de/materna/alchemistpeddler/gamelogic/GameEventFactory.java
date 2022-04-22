@@ -12,9 +12,9 @@ public class GameEventFactory {
     switch (eventName) {
       case ROB -> {
         return (GameEvent<Player>) (Player player) -> {
-          double stealPercent = ThreadLocalRandom.current().nextDouble(0, 26);
+          double stealPercent = ThreadLocalRandom.current().nextDouble(0, 0.26);
           int targetCurrency = (int) (player.getCurrency() * (1.0 - stealPercent));
-          player.setCurrency(targetCurrency);
+          player.setCurrency(targetCurrency > 0 ?  targetCurrency : 0);
           return EventName.ROB;
         };
       }
