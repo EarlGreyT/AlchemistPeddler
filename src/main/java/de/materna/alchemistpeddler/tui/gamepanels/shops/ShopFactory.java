@@ -9,6 +9,7 @@ public class ShopFactory {
 
   private ShopFactory() {
   }
+  static PotionShopSellActionPanel potionShopSellActionPanel;
   static TravelActionPanel travelActionPanel;
   static PotionShopActionPanel potionShopActionPanel;
   static EnumMap<CITY_NAME, TravelShopPanel> travelShops = new EnumMap<>(
@@ -46,6 +47,13 @@ public class ShopFactory {
       potionShopActionPanel = new PotionShopActionPanel();
     }
     return potionShopActionPanel;
+  }
+
+  public static PotionShopSellActionPanel getPotionShopSellActionPanel(){
+    if (potionShopSellActionPanel == null) {
+      potionShopSellActionPanel = new PotionShopSellActionPanel();
+    }
+    return potionShopSellActionPanel;
   }
   public static TravelActionPanel getTravelActionPanel(){
     if (travelActionPanel == null) {

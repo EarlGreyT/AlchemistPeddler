@@ -39,6 +39,7 @@ public class PlayerDataPanel extends Panel {
       AmountLabel amountLabel = new AmountLabel("Amount "+potionAmount);
       AmountLabel priceLabel = new AmountLabel("");
       PotionPanel potionPanel = new PotionPanel(nameLabel, playerRecord.location(),amountLabel,priceLabel);
+      potionPanel.removeComponent(potionPanel.getPriceLabel());
       potionPanels.put(potion,potionPanel);
       playerPotions.addComponent(potionPanel);
     }

@@ -7,11 +7,11 @@ import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.tui.gamepanels.navigationbuttons.ActionBuyButton;
+import de.materna.alchemistpeddler.tui.gamepanels.navigationbuttons.ActionSellButton;
 import de.materna.alchemistpeddler.tui.gamepanels.navigationbuttons.ActionTravelButton;
 import java.util.ArrayList;
 
 public class ActionPanel extends Panel {
-  private ArrayList<Button> buttons = new ArrayList<>();
   public ActionPanel() {
     super();
     setFillColorOverride(ANSI.BLACK);
@@ -21,27 +21,20 @@ public class ActionPanel extends Panel {
         case BUY -> {
           ActionBuyButton actionButton = new ActionBuyButton();
           actionButton.addTo(this);
-          buttons.add(actionButton);
         }
         case TRAVEL -> {
           ActionTravelButton travelButton = new ActionTravelButton();
           travelButton.addTo(this);
-          buttons.add(travelButton);
+        }
+        case SELL -> {
+          ActionSellButton sellButton = new ActionSellButton();
+          sellButton.addTo(this);
         }
         default -> {
           Button actionButton = new Button(action.name());
           actionButton.addTo(this);
-          buttons.add(actionButton);
         }
       }
-
     }
-
-
-  }
-
-
-  public void setMyLabel(String labelText, int labelIndex) {
-    buttons.get(labelIndex).setLabel(labelText);
   }
 }

@@ -6,7 +6,7 @@ public class AmountLabel extends Label {
   private String type;
   public AmountLabel(Integer potionAmount) {
     this("Amount");
-    setText(+potionAmount);
+    setText(potionAmount);
 
   }
   public AmountLabel(String text) {

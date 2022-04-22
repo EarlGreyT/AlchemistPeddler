@@ -6,8 +6,8 @@ import de.materna.alchemistpeddler.tui.gamepanels.AmountLabel;
 import de.materna.alchemistpeddler.tui.gamepanels.NameLabel;
 
 public class PotionPanel extends BuyablePanel {
-  private AmountLabel amountLabel;
-  private AmountLabel priceLabel;
+  private final AmountLabel amountLabel;
+  private final AmountLabel priceLabel;
   public PotionPanel(NameLabel nameLabel, CityRecord cityRecord, AmountLabel amountLabel, AmountLabel priceLabel){
     super(nameLabel, cityRecord,amountLabel, priceLabel);
     this.amountLabel = amountLabel;
@@ -28,6 +28,9 @@ public class PotionPanel extends BuyablePanel {
     return amountLabel;
   }
 
+  public AmountLabel getPriceLabel() {
+    return priceLabel;
+  }
 }
 
 
