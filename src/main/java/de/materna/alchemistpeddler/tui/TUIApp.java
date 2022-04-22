@@ -27,7 +27,6 @@ public class TUIApp implements PlayerEventGenerator {
   public static WindowBasedTextGUI gui;
   public static void main(String[] args) throws IOException, InterruptedException {
     CityGraph.buildGraph();
-    Game game = new Game(gameController);
     Terminal term = new DefaultTerminalFactory().createTerminal();
     Screen screen = new TerminalScreen(term);
     gui = new MultiWindowTextGUI(screen);

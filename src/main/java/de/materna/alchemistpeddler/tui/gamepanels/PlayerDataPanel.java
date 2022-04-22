@@ -37,7 +37,7 @@ public class PlayerDataPanel extends Panel {
       NameLabel nameLabel = new NameLabel(potion.name());
       AmountLabel amountLabel = new AmountLabel("Amount "+potionAmount);
       AmountLabel priceLabel = new AmountLabel("");
-      PotionPanel potionPanel = new PotionPanel(nameLabel,amountLabel,priceLabel);
+      PotionPanel potionPanel = new PotionPanel(nameLabel, playerRecord.location(),amountLabel,priceLabel);
       potionPanels.put(potion,potionPanel);
       playerPotions.addComponent(potionPanel);
     }
@@ -49,7 +49,7 @@ public class PlayerDataPanel extends Panel {
     for (Potion potion : Potion.values()) {
       int potionAmount = playerRecord.inventory().get(potion.ordinal());
       PotionPanel potionPanel = potionPanels.get(potion);
-      potionPanel.getAmountLabel().setText("Amount "+potionAmount);
+      potionPanel.getAmountLabel().setText(potionAmount);
     }
   }
 }

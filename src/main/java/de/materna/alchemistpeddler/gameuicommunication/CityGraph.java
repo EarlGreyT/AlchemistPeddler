@@ -22,6 +22,5 @@ public final class CityGraph {
       }
       routes.put(from, destMap);
     }
-    System.out.println(routes);
   }
 }

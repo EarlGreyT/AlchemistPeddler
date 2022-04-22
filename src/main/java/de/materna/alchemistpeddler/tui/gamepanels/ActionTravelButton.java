@@ -18,7 +18,8 @@ public class ActionTravelButton extends Button {
       PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
       CITY_NAME playerLocationName = CITY_NAME.valueOf(playerRecord.location().name().toUpperCase());
       LocationPanel locationPanel = gameWindow.getGamePanel().getLocationPanel();
-      locationPanel.setInteractionPanel(new TravelActionPanel(),"Where do you want to go?");
+      locationPanel.setInfoPanel(ShopFactory.getTravelShop(playerLocationName), playerRecord.location().name());
+      locationPanel.setInteractionPanel(ShopFactory.getTravelActionPanel(),"Where do you want to go?");
     });
   }
 }

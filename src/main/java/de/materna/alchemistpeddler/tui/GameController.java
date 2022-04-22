@@ -1,5 +1,6 @@
 package de.materna.alchemistpeddler.tui;
 
+import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.gamelogic.GameEvent;
 import de.materna.alchemistpeddler.gamelogic.GameState;
 import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 
 public class GameController implements PlayerEventGenerator, GameStateListener {
   private GameState lastGameState;
+  private Game game = new Game(this);
   @Override
   public GameState getGameState(GameState gameState) {
     this.lastGameState = gameState;

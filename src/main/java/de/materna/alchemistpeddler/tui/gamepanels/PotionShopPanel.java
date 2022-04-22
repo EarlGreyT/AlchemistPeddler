@@ -8,24 +8,11 @@ import de.materna.alchemistpeddler.gamelogic.CityRecord;
 
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
 
-import java.util.ArrayList;
 
 
-class PotionShopPanel extends Panel {
-  private CityRecord cityRecord;
-  private ArrayList<PotionPanel> potionPanels = new ArrayList<>();
 
-  protected void update(){
-    for (PotionPanel potionPanel : potionPanels) {
-      String potionName = ((NameLabel) potionPanel.getChildrenList().get(0)).getText();
-      int potionAmount = cityRecord.potionAmounts().get(Potion.valueOf(potionName).ordinal());
-      int potionPrice = cityRecord.prices().get(Potion.valueOf(potionName).ordinal());
-      AmountLabel potionAmountLabel = potionPanel.getAmountLabel();
-      AmountLabel potionPriceLabel = potionPanel.getPriceLabel();
-      potionAmountLabel.setText(potionAmount);
-      potionPriceLabel.setText(potionPrice);
-    }
-  }
+class PotionShopPanel extends ShopPanel {
+
   public PotionShopPanel(CityRecord cityRecord) {
     super();
     this.cityRecord = cityRecord;
@@ -40,8 +27,8 @@ class PotionShopPanel extends Panel {
       AmountLabel amountLabel = new AmountLabel(potionAmount);
       AmountLabel priceLabel = new AmountLabel("Price");
       priceLabel.setText(potionPrice);
-      PotionPanel potionPanel = new PotionPanel(nameLabel,amountLabel,priceLabel);
-      potionPanels.add(potionPanel);
+      PotionPanel potionPanel = new PotionPanel(nameLabel, cityRecord, amountLabel,priceLabel);
+      buyablePanels.add(potionPanel);
       addComponent(potionPanel);
     }
   }

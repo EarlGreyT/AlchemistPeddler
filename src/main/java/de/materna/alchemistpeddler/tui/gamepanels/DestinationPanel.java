@@ -1,38 +1,24 @@
 package de.materna.alchemistpeddler.tui.gamepanels;
 
-import com.googlecode.lanterna.gui2.LayoutManager;
-import com.googlecode.lanterna.gui2.LinearLayout;
-import com.googlecode.lanterna.gui2.Panel;
 
-public class DestinationPanel extends Panel {
-  private NameLabel nameLabel;
+import de.materna.alchemistpeddler.gamelogic.CityRecord;
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
+
+
+public class DestinationPanel extends BuyablePanel {
   private AmountLabel priceLabel;
-  public DestinationPanel(NameLabel nameLabel, AmountLabel priceLabel) {
-    this(new LinearLayout());
-    this.nameLabel = nameLabel;
+  public DestinationPanel(NameLabel nameLabel, CityRecord cityRecord, AmountLabel priceLabel) {
+    super(nameLabel, cityRecord, priceLabel);
     this.priceLabel = priceLabel;
-    addComponent(nameLabel);
-    addComponent(priceLabel);
-
   }
 
-  private DestinationPanel(LayoutManager layoutManager) {
-    super(layoutManager);
-  }
 
-  public NameLabel getNameLabel() {
-    return nameLabel;
-  }
-
-  public void setNameLabel(NameLabel nameLabel) {
-    this.nameLabel = nameLabel;
-  }
-
-  public AmountLabel getPriceLabel() {
-    return priceLabel;
-  }
-
-  public void setPriceLabel(AmountLabel priceLabel) {
-    this.priceLabel = priceLabel;
+  @Override
+  public void update() {
+    CITY_NAME location = CITY_NAME.valueOf(cityRecord.name().toUpperCase());
+    CITY_NAME destination = CITY_NAME.valueOf(nameLabel.getText().toUpperCase());
+    int travelCost = CityGraph.routes.get(location).get(destination).cost();
+    priceLabel.setText(travelCost);
   }
 }

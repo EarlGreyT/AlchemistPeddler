@@ -39,7 +39,7 @@ class City {
   /**
    * Gives the amount of Potions available for purchase.
    *
-   * @return int[] potionAmounts with the amount of potion available at potionAmounts[potion.ordinal()]
+   * @return int[] potionAmounts with the amount of a specific potion  available at potionAmounts[potion.ordinal()]
    * @see Potion
    */
   int[] getPotionAmounts() {

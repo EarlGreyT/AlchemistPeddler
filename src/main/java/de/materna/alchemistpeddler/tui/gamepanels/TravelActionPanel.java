@@ -21,7 +21,7 @@ public class TravelActionPanel extends Panel {
             PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
             int amount = CityGraph.routes.get(CITY_NAME.valueOf(playerRecord.location().name().toUpperCase())).get(city_name).cost();
             gameController.inform(GameController.subscribers.get(0), new PlayerEvent(PlayerAction.TRAVEL, city_name.ordinal(),amount));
-            TUIApp.gameWindow.getGamePanel().getLocationPanel().setInfoPanel(new Panel(), city_name.cityName);
+            TUIApp.gameWindow.getGamePanel().getLocationPanel().setInfoPanel(ShopFactory.getTravelShop(city_name), city_name.cityName);
           }
       );
       addComponent(travelButton);
