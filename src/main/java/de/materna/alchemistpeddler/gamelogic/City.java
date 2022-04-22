@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 class City {
   public static final int MIN_AMOUNT = 5;
-  public static final int MAX_AMOUNT = 200;
+  public static final int MAX_AMOUNT = 50;
   public static final int NUMBER_OF_POTION_KINDS = Potion.values().length;
   public static final int MIN_PRICE = 10;
   public static final int RUNOUT_FACTOR = 2;
