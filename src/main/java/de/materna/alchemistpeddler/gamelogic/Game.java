@@ -102,7 +102,7 @@ public class Game implements PlayerEventListener {
     gameStateListener.getGameEventNotification(eventName,msg);
   }
 
-  public void updateGameState() {
+  private void updateGameState() {
     ArrayList<CityRecord> cityRecords = new ArrayList<>();
     cities.forEach((name, city) -> cityRecords.add(new CityRecord(city)));
     PlayerRecord playerRecord = new PlayerRecord(player);
