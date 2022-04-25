@@ -24,7 +24,7 @@ public class PotionShopSellActionPanel extends ShopActionPanel {
                 .setValidationPattern(Pattern.compile("[0-9]*"), "You didn't enter a single number!")
                 .build()
                 .showDialog(TUIApp.gui);
-            int amount = !input.equals("") ? Integer.parseInt(input) : 0;
+            int amount = !(input == null || input.equals("")) ? Integer.parseInt(input) : 0;
             GameController gameController =TUIApp.gameController;
             PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
             gameController.inform(GameController.subscribers.get(0), new PlayerEvent(action, potion.ordinal(),amount));

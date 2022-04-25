@@ -36,7 +36,7 @@ public class PlayerDataPanel extends Panel {
     for (Potion potion : Potion.values()) {
       int potionAmount = playerRecord.inventory().get(potion.ordinal());
       NameLabel nameLabel = new NameLabel(potion.name());
-      AmountLabel amountLabel = new AmountLabel("Amount "+potionAmount);
+      AmountLabel amountLabel = new AmountLabel(potionAmount);
       AmountLabel priceLabel = new AmountLabel("");
       PotionPanel potionPanel = new PotionPanel(nameLabel, playerRecord.location(),amountLabel,priceLabel);
       potionPanel.removeComponent(potionPanel.getPriceLabel());

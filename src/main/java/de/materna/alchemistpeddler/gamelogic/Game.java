@@ -41,10 +41,7 @@ public class Game implements PlayerEventListener {
   public void getUpdate(PlayerEvent event) {
     switch (event.action()) {
       case BUY -> {
-        System.out.println(Potion.values()[event.what()] +" " +event.amount());
-        System.out.println("Bought: "+player.buy(Potion.values()[event.what()], event.amount()));
-        System.out.println(player.getLocation().getName()+ " has left: "+ player.getLocation().getPotionAmounts()[event.what()]);
-
+        player.buy(Potion.values()[event.what()], event.amount());
       }
       case SELL -> {
         player.sell(Potion.values()[event.what()], event.amount());
@@ -78,13 +75,12 @@ public class Game implements PlayerEventListener {
             ThreadLocalRandom.current().nextInt(CITY_NAME.values().length)
             ].cityName);
         ((GameEvent<City>) event).process(randomCity);
-        msg = "Consumption: " + Arrays.toString(randomCity.getPotionConsumptions()) + ", Production: "
-                + Arrays.toString(
-                randomCity.getPotionProductions());
+        msg = "The Market in " + randomCity.getName()  + " acts crazy.\n Experts are baffled.";
       }
       case POTION -> {
         Potion randomPotion = Potion.values()[ThreadLocalRandom.current().nextInt(Potion.values().length)];
        ((GameEvent<Potion>) event).process(randomPotion);
+       msg = randomPotion.name();
       }
       case ROB -> {
         GameEvent<Player> playerGameEvent = (GameEvent<Player>) event;
@@ -96,7 +92,7 @@ public class Game implements PlayerEventListener {
         ((GameEvent<Void>) event).process(null);
       }
     }
-    gameStateListener.getGameEventNotification(event,msg);
+    gameStateListener.getGameEventNotification(eventName,msg);
   }
 
   private void updateGameState() {

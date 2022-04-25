@@ -85,7 +85,7 @@ class City {
       potionAmounts[potion.ordinal()] = potionAmounts[potion.ordinal()] - amount;
       return amount;
     }
-    int amountSold = amount - potionAmounts[potion.ordinal()];
+    int amountSold = potionAmounts[potion.ordinal()];
     potionAmounts[potion.ordinal()] = 0;
     return amountSold;
   }
