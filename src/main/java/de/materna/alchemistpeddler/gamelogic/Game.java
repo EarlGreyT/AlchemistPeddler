@@ -44,18 +44,23 @@ public class Game implements PlayerEventListener {
         System.out.println(Potion.values()[event.what()] +" " +event.amount());
         System.out.println("Bought: "+player.buy(Potion.values()[event.what()], event.amount()));
         System.out.println(player.getLocation().getName()+ " has left: "+ player.getLocation().getPotionAmounts()[event.what()]);
-        updateGameState();
+
       }
       case SELL -> {
         player.sell(Potion.values()[event.what()], event.amount());
-        updateGameState();
       }
       case TRAVEL -> {
         nextDay();
         player.travel(cities.get(CITY_NAME.values()[event.what()].cityName));
-        updateGameState();
+      }
+      case TAKELOAN -> {
+        player.takeLoan(event.amount());
+      }
+      case PAYLOAN -> {
+        player.payLoan(event.amount());
       }
     }
+    updateGameState();
   }
 
   private void fireEvent() {

@@ -4,5 +4,6 @@ public enum PlayerAction {
   BUY,
   SELL,
   TRAVEL,
-  TAKELOAN
+  TAKELOAN,
+  PAYLOAN
 }

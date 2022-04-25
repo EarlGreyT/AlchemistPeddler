@@ -5,7 +5,11 @@ import com.googlecode.lanterna.gui2.Component;
 import com.googlecode.lanterna.gui2.Direction;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.AbstractShopFactory;
 
+import static de.materna.alchemistpeddler.tui.TUIApp.*;
 public class LocationPanel extends Panel {
   Component infoPanel = new Panel();
   Component interactionPanel = new Panel();
@@ -14,6 +18,12 @@ public class LocationPanel extends Panel {
     addComponent(infoPanel);
     addComponent(interactionPanel);
     setLayoutManager(new LinearLayout(Direction.HORIZONTAL));
+    CITY_NAME playerCity = CITY_NAME.valueOf(
+        gameController.getLastGameState().playerRecord().location().name().toUpperCase());
+    AbstractShopFactory shopFactory = gameController.shopFactories.get(PlayerAction.BUY);
+    setInfoPanel(shopFactory.getShop(playerCity),
+        playerCity.cityName);
+    setInteractionPanel(shopFactory.getShopActionPanel(), playerCity.cityName);
   }
 
   public void setInfoPanel(Panel leftPanel, String text) {
