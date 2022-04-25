@@ -15,7 +15,6 @@ import java.util.concurrent.ThreadLocalRandom;
  * Class that will handle Game rules and communication with the UI
  */
 public class Game implements PlayerEventListener {
-
   static final int MAX_DAYS = 30;
   static final Player player = new Player();
   private static final int SUM_TO_WIN = player.getCurrency() * 10;
@@ -65,6 +64,9 @@ public class Game implements PlayerEventListener {
     updateGameState();
   }
 
+  /**
+   * sends a random GameEvent to the GameController
+   */
   private void fireEvent() {
     int randomEventIndex = ThreadLocalRandom.current()
         .nextInt(EventName.values().length + (MAX_DAYS - gameDay));
@@ -108,6 +110,10 @@ public class Game implements PlayerEventListener {
         new GameState(cityRecords, playerRecord, gameDay, MAX_DAYS));
   }
 
+  /**
+   * increases the current day by one, causes every city to update,
+   * sends a GameEvent to the GameController and sets the players win/loss status according tu the current game state
+   */
   private void nextDay() {
     gameDay++;
     cities.forEach((name, city) -> city.update());
@@ -120,13 +126,6 @@ public class Game implements PlayerEventListener {
     player.setWon((gameDay > MAX_DAYS) && (player.getCurrency() >= SUM_TO_WIN) && (player.getDebt()<=0));
   }
 
-  public int getGameDay() {
-    return gameDay;
-  }
-
-  public void setGameDay(int gameDay) {
-    this.gameDay = gameDay;
-  }
 
   public Player getPlayer() {
     return player;
@@ -136,7 +135,5 @@ public class Game implements PlayerEventListener {
     return cities;
   }
 
-  public int getSumToWin() {
-    return SUM_TO_WIN;
-  }
+
 }

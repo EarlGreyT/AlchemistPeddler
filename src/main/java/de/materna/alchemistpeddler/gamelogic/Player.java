@@ -37,6 +37,10 @@ class Player {
     this.lost = lost;
   }
 
+  /**
+   * Travels to another city, if the player can afford the trip.
+   * @param dest - the city the player wishes to go to
+   */
   void travel(City dest) {
     CITY_NAME locationName = CITY_NAME.valueOf(location.getName().toUpperCase());
     CITY_NAME destName = CITY_NAME.valueOf(dest.getName().toUpperCase());
@@ -47,18 +51,27 @@ class Player {
     }
   }
 
+  /**
+   * increases the amount of currency a player has, but also increases his debt
+   * @param amount
+   */
   void takeLoan(int amount) {
-    debt++;
+    currency = currency + amount;
+    debt= debt + amount;
   }
 
-  int payLoan(int amount) {
+  /**
+   * decreases the amount of currency a player has and decreases his debt,
+   * if he can spend that much money.
+   * @param amount
+   */
+  void payLoan(int amount) {
     if (currency >= amount) {
       debt -= amount;
       currency -= amount;
-      return amount;
     }
-    return 0;
   }
+
 
   int getPotionCapacity() {
     return potionCapacity;
@@ -85,6 +98,12 @@ class Player {
     return current + amount <= potionCapacity;
   }
 
+  /**
+   * adds the specified amount of a potion to the inventory, if the player can pay for it.
+   * @param potion
+   * @param amount
+   * @return
+   */
   int buy(Potion potion, int amount) {
     int price = location.price(potion);
     if (checkInventoryCapacity(amount) && price <= currency) {
@@ -95,6 +114,13 @@ class Player {
     return 0;
   }
 
+  /**
+   * decreases the amount of a potion in the inventory and raises the amount of currency the player,
+   * according to the potion price in the current city.
+   * @param potion
+   * @param amount
+   * @return
+   */
   int sell(Potion potion, int amount) {
     if (inventory[potion.ordinal()] >= amount) {
       currency += location.price(potion) * amount;
