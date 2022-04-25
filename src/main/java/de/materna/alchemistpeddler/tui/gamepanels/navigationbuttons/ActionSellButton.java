@@ -6,8 +6,9 @@ import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
 import com.googlecode.lanterna.gui2.Button;
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.tui.gamepanels.LocationPanel;
-import de.materna.alchemistpeddler.tui.gamepanels.shops.ShopFactory;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.AbstractShopFactory;
 
 public class ActionSellButton extends Button {
   public ActionSellButton(){
@@ -15,16 +16,17 @@ public class ActionSellButton extends Button {
         () -> {
           PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
           String playerLocationName = playerRecord.location().name();
+          AbstractShopFactory shopFactory = gameController.shopFactories.get(PlayerAction.SELL);
           LocationPanel locationPanel = gameWindow.getGamePanel().getLocationPanel();
           locationPanel.setInfoPanel(
-              ShopFactory.getPotionShop(
+              shopFactory.getShop(
                   CITY_NAME.valueOf(
                       playerLocationName.toUpperCase())
               )
               , playerLocationName
           );
           locationPanel
-              .setInteractionPanel(ShopFactory.getPotionShopSellActionPanel()
+              .setInteractionPanel(shopFactory.getSellShopActionPanel()
                   , "What do you want to sell?");
         }
     );

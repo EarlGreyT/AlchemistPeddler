@@ -8,7 +8,7 @@ import com.googlecode.lanterna.gui2.Panel;
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.tui.TUIApp;
-import de.materna.alchemistpeddler.tui.gamepanels.shops.PotionPanel;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.PotionPanel;
 import java.util.EnumMap;
 
 public class PlayerDataPanel extends Panel {

@@ -1,11 +1,14 @@
 package de.materna.alchemistpeddler.gameuicommunication;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Enumeration representing different kinds of potions.
  *
  * <p>Their basePrice attribute is used by a City to calculate the current sales price</p>
  */
-public enum Potion {
+public enum Potion implements Buyable {
   MANA(10),
   HEALTH(15),
   DEXTERITY(20),
@@ -22,5 +25,10 @@ public enum Potion {
 
   Potion(int basePrice) {
     this.basePrice = basePrice;
+  }
+
+  @Override
+  public Collection getValues() {
+    return List.of(values());
   }
 }

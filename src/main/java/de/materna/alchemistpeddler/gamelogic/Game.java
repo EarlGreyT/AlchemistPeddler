@@ -99,7 +99,7 @@ public class Game implements PlayerEventListener {
     cities.forEach((name, city) -> cityRecords.add(new CityRecord(city)));
     PlayerRecord playerRecord = new PlayerRecord(player);
     gameStateListener.getGameState(
-        new GameState(cityRecords, playerRecord, gameDay));
+        new GameState(cityRecords, playerRecord, gameDay, MAX_DAYS));
   }
 
   private void nextDay() {
@@ -110,7 +110,7 @@ public class Game implements PlayerEventListener {
   }
 
   private void checkWinCondition() {
-    player.setLost(gameDay > (MAX_DAYS / 2) && player.getDebt() > 0);
+    player.setLost((gameDay > (MAX_DAYS / 2) && player.getDebt() > 0) || gameDay > MAX_DAYS);
     player.setWon(gameDay > MAX_DAYS && player.getCurrency() >= sumToWin && player.getDebt()<=0);
   }
 

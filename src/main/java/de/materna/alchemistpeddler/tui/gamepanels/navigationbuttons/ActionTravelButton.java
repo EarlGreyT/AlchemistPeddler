@@ -6,8 +6,9 @@ import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
 import com.googlecode.lanterna.gui2.Button;
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.tui.gamepanels.LocationPanel;
-import de.materna.alchemistpeddler.tui.gamepanels.shops.ShopFactory;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.AbstractShopFactory;
 
 
 public class ActionTravelButton extends Button {
@@ -15,12 +16,13 @@ public class ActionTravelButton extends Button {
 
   public ActionTravelButton() {
     super("travel", () -> {
+      AbstractShopFactory shopFactory = gameController.shopFactories.get(PlayerAction.TRAVEL);
       PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
       CITY_NAME playerLocationName = CITY_NAME.valueOf(playerRecord.location().name().toUpperCase());
       LocationPanel locationPanel = gameWindow.getGamePanel().getLocationPanel();
       locationPanel.setInfoPanel(
-          ShopFactory.getTravelShop(playerLocationName), playerRecord.location().name());
-      locationPanel.setInteractionPanel(ShopFactory.getTravelActionPanel(),"Where do you want to go?");
+          shopFactory.getShop(playerLocationName), playerRecord.location().name());
+      locationPanel.setInteractionPanel(shopFactory.getShopActionPanel(),"Where do you want to go?");
     });
   }
 }
