@@ -10,13 +10,13 @@ import java.util.List;
  */
 public enum Potion implements Buyable {
   MANA(10),
+  STAMINA(10),
   HEALTH(15),
   DEXTERITY(20),
   STRENGTH(20),
-  INTELLIGENCE(30),
-  VIGOR(35),
+  INTELLIGENCE(20),
+  VIGOR(40),
   VITALITY(40),
-  STAMINA(10),
   FROST(50),
   FIRE(50);
 

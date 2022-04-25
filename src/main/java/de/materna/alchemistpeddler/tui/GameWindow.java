@@ -11,7 +11,6 @@ public class GameWindow extends BasicWindow {
     super("AlchemistPeddler");
     setHints(List.of(Hint.FULL_SCREEN));
     setTheme(new BlackTheme());
-
     setComponent(new GamePanel());
   }
   public GamePanel getGamePanel(){

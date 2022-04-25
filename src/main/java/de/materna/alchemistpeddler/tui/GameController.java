@@ -1,7 +1,9 @@
 package de.materna.alchemistpeddler.tui;
 
 import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
+import static de.materna.alchemistpeddler.tui.TUIApp.gui;
 
+import com.googlecode.lanterna.gui2.BasicWindow;
 import com.googlecode.lanterna.gui2.Button;
 import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.gamelogic.GameEvent;
@@ -31,6 +33,7 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
     shopFactories.put(PlayerAction.SELL, shopFactories.get(PlayerAction.BUY));
   }
 
+
   @Override
   public GameState getGameState(GameState gameState) {
     this.lastGameState = gameState;
@@ -40,37 +43,13 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
     if (gameWindow != null) {
       gameWindow.getGamePanel().getPlayerPanel().getPlayerDataPanel()
           .update(lastGameState.playerRecord());
-      if (gameState.playerRecord().hasLost()){
+      if (gameState.playerRecord().hasLost()) {
         GamePanel gamePanel = gameWindow.getGamePanel();
-        gamePanel.removeAllComponents();
-        gamePanel.addComponent(new EventPanel("""
-          You lost!
-          
-          Good Luck next time!
-          """));
-        gamePanel.addComponent(new Button("new game",() ->{
-          game = new Game(this);
-          gameWindow.setComponent(new GamePanel());
-        }));
-        gamePanel.addComponent(new Button("close game", ()->{
-          gameWindow.close();
-        }));
+        gamePanel.gameLost();
       }
-      if (gameState.playerRecord().hasWon()){
+      if (gameState.playerRecord().hasWon()) {
         GamePanel gamePanel = gameWindow.getGamePanel();
-        gamePanel.removeAllComponents();
-        gamePanel.addComponent(new EventPanel("""
-          You Won!
-          
-          Would you like to play another round?
-          """));
-        gamePanel.addComponent(new Button("new game",() ->{
-          game = new Game(this);
-          gameWindow.setComponent(new GamePanel());
-        }));
-        gamePanel.addComponent(new Button("close game", ()->{
-          gameWindow.close();
-        }));
+        gamePanel.gameWon();
       }
     }
 

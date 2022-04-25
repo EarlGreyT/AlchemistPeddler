@@ -21,9 +21,13 @@ public class LocationPanel extends Panel {
     CITY_NAME playerCity = CITY_NAME.valueOf(
         gameController.getLastGameState().playerRecord().location().name().toUpperCase());
     AbstractShopFactory shopFactory = gameController.shopFactories.get(PlayerAction.BUY);
+    Panel buySellPanel = new Panel();
+    buySellPanel.setLayoutManager(new LinearLayout(Direction.HORIZONTAL));
+    buySellPanel.addComponent(shopFactory.getShopActionPanel());
+    buySellPanel.addComponent(shopFactory.getSellShopActionPanel());
     setInfoPanel(shopFactory.getShop(playerCity),
         playerCity.cityName);
-    setInteractionPanel(shopFactory.getShopActionPanel(), playerCity.cityName);
+    setInteractionPanel(buySellPanel,"");
   }
 
   public void setInfoPanel(Panel leftPanel, String text) {

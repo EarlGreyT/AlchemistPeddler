@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
 
-  static final int MAX_DAYS = 30;
+  static final int MAX_DAYS = 2;
   static final Player player = new Player();
   private static final int sumToWin = player.getCurrency() * 10;
   private int gameDay = 0;
@@ -111,8 +111,8 @@ public class Game implements PlayerEventListener {
   }
 
   private void checkWinCondition() {
-    player.setLost((gameDay > (MAX_DAYS / 2) && player.getDebt() > 0) || gameDay > MAX_DAYS);
-    player.setWon(gameDay > MAX_DAYS && player.getCurrency() >= sumToWin && player.getDebt()<=0);
+    player.setLost((gameDay > (MAX_DAYS / 2) && player.getDebt() > 0) || ((gameDay > MAX_DAYS)) && player.getCurrency()< sumToWin);
+    player.setWon((gameDay > MAX_DAYS) && (player.getCurrency() >= sumToWin) && (player.getDebt()<=0));
   }
 
   public int getGameDay() {
