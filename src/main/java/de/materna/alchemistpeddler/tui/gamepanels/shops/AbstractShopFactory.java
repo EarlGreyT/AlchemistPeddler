@@ -4,6 +4,11 @@ import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.ShopActionPanel;
 import java.util.HashMap;
 
+/**
+ * Creates the UI-Elements that make up a shop
+ * <p>Panels are created once  for each city and then reused</p>
+ * <p> can update every Shop it produced</p>
+ */
 public abstract class AbstractShopFactory {
   protected HashMap<CITY_NAME, ShopPanel> shops= new HashMap<>();
   protected ShopActionPanel shopActionPanel;

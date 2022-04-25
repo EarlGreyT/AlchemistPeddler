@@ -3,6 +3,9 @@ package de.materna.alchemistpeddler.gameuicommunication;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * holds all possible city names
+ */
 public enum CITY_NAME implements Buyable{
   GOLDSHIRE("Goldshire"),
   HOBBINGEN("Hobbingen"),

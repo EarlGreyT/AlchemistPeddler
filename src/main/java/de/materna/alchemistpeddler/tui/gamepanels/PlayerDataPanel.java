@@ -9,10 +9,18 @@ import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
-import de.materna.alchemistpeddler.tui.TUIApp;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.AmountLabel;
+import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.NameLabel;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.PotionPanel;
 import java.util.EnumMap;
 
+/**
+ * holds information about the player
+ * <p> how much  gold does the player have?</p>
+ * <p> how much debt does the player have?</p>
+ * <p> which city is the current location of the player?</p>
+ * <p> which and how much potions does the player carry?</p>
+ */
 public class PlayerDataPanel extends Panel {
   Panel playerData = new Panel(new LinearLayout(Direction.VERTICAL)
       .setSpacing(1));

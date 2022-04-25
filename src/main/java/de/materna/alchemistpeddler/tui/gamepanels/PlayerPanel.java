@@ -6,7 +6,11 @@ import com.googlecode.lanterna.gui2.Direction;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 
-
+/**
+ * Holds the ActionPanel and the PlayerDataPanle
+ * @see ActionPanel
+ * @see PlayerDataPanel
+ */
 public class PlayerPanel extends Panel {
 
   public static final String CHARACTER = "Character";

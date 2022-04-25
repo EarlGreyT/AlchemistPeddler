@@ -4,6 +4,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Representation of the State of a City.
+ * @param potionProductions
+ * @param potionConsumptions
+ * @param potionAmounts
+ * @param prices
+ * @param name
+ * @see City
+ * @see GameState
+ */
 public record CityRecord(List<Integer> potionProductions, List<Integer> potionConsumptions, List<Integer> potionAmounts, List<Integer> prices,String name) {
   public CityRecord(City city){
     this(

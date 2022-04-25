@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * City keeps track of how many potions are available to buy, how many are produced and consumed on
+ * A City keeps track of how many potions are available to buy, how many are produced and consumed on
  * a daily basis. This is used to calculate the local price of a potion
  */
 class City {
@@ -79,6 +79,7 @@ class City {
    * @param potion Which kind of potion to sell
    * @param amount How many potions to sell
    * @return The Number of potions sold
+   * @see Player
    */
   int sellPotion(Potion potion, int amount) {
     if (amount <= potionAmounts[potion.ordinal()]) {
@@ -89,20 +90,45 @@ class City {
     potionAmounts[potion.ordinal()] = 0;
     return amountSold;
   }
+
+  /**
+   * Increases the amount of Potions in the City and returns how mane have been bought.
+   *
+   * @param potion Which Kind of potion is bought.
+   * @param amount How many are bought.
+   * @return The Number of Potions bought.
+   * @see Player
+   */
   int buyPotion(Potion potion, int amount){
     potionsBought[potion.ordinal()] = potionsBought[potion.ordinal()] + Math.max(amount, 0);
     return Math.max(amount, 0);
   }
+
+  /**
+   * Increases or decreases the daily production rate of a specific Potion.
+   * <p> a production rate is at least 0</p>
+   * @param potion The potion which production rate should be changed
+   * @param productionDelta The value by which the current production rate is to be modified
+   */
   void modifyPotionProduction(Potion potion, int productionDelta) {
     int newProductionValue = potionProductions[potion.ordinal()] + productionDelta;
     potionProductions[potion.ordinal()] = Math.max(newProductionValue, 0);
   }
 
+  /**
+   * Increases or decreases the daily consumption rate of a specific Potion.
+   * <p> a consumption rate is at least 0</p>
+   * @param potion The potion which consumption rate should be changed
+   * @param productionDelta The value by which the current consumption rate is to be modified
+   */
   void modifyPotionConsumption(Potion potion, int productionDelta) {
     int newConsumptionValue = potionConsumptions[potion.ordinal()] + productionDelta;
     potionConsumptions[potion.ordinal()] = Math.max(newConsumptionValue, 0);
   }
-
+  /**
+   * updates the amount of available potions according to the production rate, consumption rate
+   * and the amount of potions sold by the player.
+   */
   void update(){
     for (int i = 0; i < potionAmounts.length; i++) {
       potionAmounts[i] += potionsBought[i];

@@ -10,6 +10,10 @@ import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.AbstractShopFactory;
 
 import static de.materna.alchemistpeddler.tui.TUIApp.*;
+/**
+ * Holds Information about the current Location of the Player.
+ * <p> eg: In a PotionShop a player will see current prices and the option to buy or sell a specific potion</p>
+ */
 public class LocationPanel extends Panel {
   Component infoPanel = new Panel();
   Component interactionPanel = new Panel();

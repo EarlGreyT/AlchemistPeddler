@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.tui.gamepanels;
+package de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels;
 
 import com.googlecode.lanterna.gui2.Label;
 

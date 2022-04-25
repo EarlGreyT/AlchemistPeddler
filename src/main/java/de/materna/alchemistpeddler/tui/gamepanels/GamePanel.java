@@ -17,6 +17,10 @@ public class GamePanel extends Panel {
   private LocationPanel locationPanel;
   private Panel infoField;
   private EventPanel eventPanel;
+
+  /**
+   * holds every Element that makes up the Game UI
+   */
   public GamePanel() {
     setLayoutManager(new LinearLayout(Direction.VERTICAL));
     infoField = new Panel(new LinearLayout(Direction.HORIZONTAL));

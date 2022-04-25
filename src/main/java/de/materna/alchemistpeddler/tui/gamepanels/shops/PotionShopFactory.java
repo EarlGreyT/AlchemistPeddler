@@ -8,8 +8,12 @@ import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.PotionShopPan
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.PotionShopSellActionPanel;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.ShopActionPanel;
 
-public class PotionShopFactory extends AbstractShopFactory{
 
+/**
+ * Produces the UI-Elements that make up a PotionShop.
+ *
+ */
+public class PotionShopFactory extends AbstractShopFactory{
   @Override
   public ShopPanel getShop(CITY_NAME cityName) {
     ShopPanel existingPanel = shops.get(cityName);

@@ -7,6 +7,9 @@ import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.ShopActionPan
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.TravelActionPanel;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.TravelShopPanel;
 
+/**
+ * Creates the UI-Elements that make up a TravelShop
+ */
 public class TravelShopFactory extends AbstractShopFactory{
 
   @Override

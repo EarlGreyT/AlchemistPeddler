@@ -13,6 +13,9 @@ import de.materna.alchemistpeddler.tui.gamepanels.navigationbuttons.ActionTakeLo
 import de.materna.alchemistpeddler.tui.gamepanels.navigationbuttons.ActionTravelButton;
 import java.util.ArrayList;
 
+/**
+ * This holds buttons for every action a player can take
+ */
 public class ActionPanel extends Panel {
   public ActionPanel() {
     super();

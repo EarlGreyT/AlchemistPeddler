@@ -8,6 +8,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class GameEventFactory {
 
+  /**
+   * Produces a GameEvent object for each possible EventName
+   * @param eventName Name of the event Type for which to produce a GameEvent
+   * @return GameEvent
+   */
   static GameEvent buildGameEvent(EventName eventName) {
     switch (eventName) {
       case ROB -> {

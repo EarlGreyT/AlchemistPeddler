@@ -8,7 +8,6 @@ import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;
 import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -17,9 +16,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
 
-  static final int MAX_DAYS = 2;
+  static final int MAX_DAYS = 30;
   static final Player player = new Player();
-  private static final int sumToWin = player.getCurrency() * 10;
+  private static final int SUM_TO_WIN = player.getCurrency() * 10;
   private int gameDay = 0;
   private final GameStateListener gameStateListener;
   static final HashMap<String, City> cities = new HashMap<>();
@@ -37,6 +36,12 @@ public class Game implements PlayerEventListener {
     updateGameState();
   }
 
+  /**
+   * Reacts to events received from the gui and triggers an update of the gameState.
+   *
+   * This allows the player to be controlled from the gui.
+   * @param event
+   */
   @Override
   public void getUpdate(PlayerEvent event) {
     switch (event.action()) {
@@ -111,8 +116,8 @@ public class Game implements PlayerEventListener {
   }
 
   private void checkWinCondition() {
-    player.setLost((gameDay > (MAX_DAYS / 2) && player.getDebt() > 0) || ((gameDay > MAX_DAYS)) && player.getCurrency()< sumToWin);
-    player.setWon((gameDay > MAX_DAYS) && (player.getCurrency() >= sumToWin) && (player.getDebt()<=0));
+    player.setLost((gameDay > (MAX_DAYS / 2) && player.getDebt() > 0) || ((gameDay > MAX_DAYS) &&( player.getCurrency()< SUM_TO_WIN)));
+    player.setWon((gameDay > MAX_DAYS) && (player.getCurrency() >= SUM_TO_WIN) && (player.getDebt()<=0));
   }
 
   public int getGameDay() {
@@ -132,6 +137,6 @@ public class Game implements PlayerEventListener {
   }
 
   public int getSumToWin() {
-    return sumToWin;
+    return SUM_TO_WIN;
   }
 }
