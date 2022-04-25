@@ -45,10 +45,6 @@ public class GamePanel extends Panel {
                   
         You should play again!
         """));
-    eventPanel.addComponent(new Button("exit", () -> {
-      System.exit(0);
-    }));
-    removeComponent(playerPanel);
   }
 
   public void gameWon(){
@@ -58,10 +54,6 @@ public class GamePanel extends Panel {
                   
         You should play again!
         """));
-    eventPanel.addComponent(new Button("new game", () -> {
-      System.exit(0);
-    }));
-    removeComponent(playerPanel);
   }
   public void setEventPanel(EventPanel eventPanel) {
     infoField.removeComponent(this.eventPanel);

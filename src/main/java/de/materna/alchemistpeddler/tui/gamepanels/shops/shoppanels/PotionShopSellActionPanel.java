@@ -27,7 +27,7 @@ public class PotionShopSellActionPanel extends ShopActionPanel {
             int amount = !(input == null || input.equals("")) ? Integer.parseInt(input) : 0;
             GameController gameController =TUIApp.gameController;
             PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
-            gameController.inform(GameController.subscribers.get(0), new PlayerEvent(action, potion.ordinal(),amount));
+            gameController.inform(gameController.getGame(), new PlayerEvent(action, potion.ordinal(),amount));
             CITY_NAME city = CITY_NAME.valueOf(playerRecord.location().name().toUpperCase());
             TUIApp.gameWindow.getGamePanel().getLocationPanel().setInfoPanel(shopFactory.getShop(city), city.cityName);
           }

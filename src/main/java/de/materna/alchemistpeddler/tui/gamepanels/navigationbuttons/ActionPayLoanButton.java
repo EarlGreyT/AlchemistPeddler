@@ -22,7 +22,7 @@ public class ActionPayLoanButton extends Button {
               .showDialog(TUIApp.gui);
           int amount = !input.equals("") ? Integer.parseInt(input) : 0;
           gameController.inform(
-              GameController.subscribers.get(0), new PlayerEvent(PlayerAction.PAYLOAN, 0,amount));
+              gameController.getGame(), new PlayerEvent(PlayerAction.PAYLOAN, 0,amount));
         }
     );
 

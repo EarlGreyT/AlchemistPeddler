@@ -24,7 +24,7 @@ public class ActionTakeLoanButton extends Button {
                 .build()
                 .showDialog(TUIApp.gui);
             int amount = !input.equals("") ? Integer.parseInt(input) : 0;
-            gameController.inform(GameController.subscribers.get(0), new PlayerEvent(PlayerAction.TAKELOAN, 0,amount));
+            gameController.inform(gameController.getGame(), new PlayerEvent(PlayerAction.TAKELOAN, 0,amount));
           }
       );
 

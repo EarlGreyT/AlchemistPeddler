@@ -16,15 +16,15 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
   static final int MAX_DAYS = 30;
-  static final Player player = new Player();
-  private static final int SUM_TO_WIN = player.getCurrency() * 10;
-  private int gameDay = 0;
+  private Player player = new Player();
+  private static final int SUM_TO_WIN = 20_000;
+  private int gameDay;
   private final GameStateListener gameStateListener;
   static final HashMap<String, City> cities = new HashMap<>();
 
   public Game(PlayerEventGenerator generator) {
+    gameDay = 0;
     gameStateListener = (GameStateListener) generator;
-    subscribeTo(generator);
     for (CITY_NAME value : CITY_NAME.values()) {
       cities.put(value.cityName, new City(value));
     }
@@ -102,7 +102,7 @@ public class Game implements PlayerEventListener {
     gameStateListener.getGameEventNotification(eventName,msg);
   }
 
-  private void updateGameState() {
+  public void updateGameState() {
     ArrayList<CityRecord> cityRecords = new ArrayList<>();
     cities.forEach((name, city) -> cityRecords.add(new CityRecord(city)));
     PlayerRecord playerRecord = new PlayerRecord(player);

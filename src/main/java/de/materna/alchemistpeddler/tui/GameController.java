@@ -1,10 +1,12 @@
 package de.materna.alchemistpeddler.tui;
 
+import static de.materna.alchemistpeddler.tui.TUIApp.gameController;
 import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
 import static de.materna.alchemistpeddler.tui.TUIApp.gui;
 
 import com.googlecode.lanterna.gui2.BasicWindow;
 import com.googlecode.lanterna.gui2.Button;
+import com.googlecode.lanterna.gui2.dialogs.ActionListDialogBuilder;
 import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.gamelogic.GameEvent;
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
@@ -77,10 +79,28 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
       if (gameState.playerRecord().hasLost()) {
         GamePanel gamePanel = gameWindow.getGamePanel();
         gamePanel.gameLost();
+        new ActionListDialogBuilder()
+            .setTitle("Do you wish to play a new Game?")
+            .addAction("Yes", () -> {
+              startNewGame();
+            })
+            .addAction("No", () -> System.exit(0))
+            .build()
+            .showDialog(gui);
       }
       if (gameState.playerRecord().hasWon()) {
         GamePanel gamePanel = gameWindow.getGamePanel();
         gamePanel.gameWon();
+
+        new ActionListDialogBuilder()
+            .setTitle("Do you wish to play a new Game?")
+            .addAction("Yes", () -> {
+              startNewGame();
+            })
+            .addAction("No", () -> System.exit(0))
+            .build()
+            .showDialog(gui);
+
       }
     }
     return gameState;
@@ -121,4 +141,10 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
   }
 
 
+  public void startNewGame() {
+    this.game = new Game(this);
+  }
+  public Game getGame(){
+    return game;
+  }
 }
