@@ -13,7 +13,7 @@ public final class CityGraph {
 
   private EnumMap<CITY_NAME, EnumMap<CITY_NAME, Route>> routes = new EnumMap<>(CITY_NAME.class);
 
-  public void buildGraph() {
+  public void buildGraph(int minPrice, int maxPrice) {
     for (CITY_NAME from : CITY_NAME.values()) {
       EnumMap<CITY_NAME, Route> destMap = new EnumMap<>(CITY_NAME.class);
       for (CITY_NAME dest : CITY_NAME.values()) {
@@ -24,7 +24,7 @@ public final class CityGraph {
           try {
             price = getPrice(dest, from);
           } catch (NullPointerException e) {
-            price = ThreadLocalRandom.current().nextInt(50, 301);
+            price = ThreadLocalRandom.current().nextInt(minPrice, maxPrice);
           } finally {
             destMap.put(dest, new Route(from, dest, price));
           }

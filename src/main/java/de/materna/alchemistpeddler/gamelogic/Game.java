@@ -16,14 +16,16 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
   static final int MAX_DAYS = 30;
-  private Player player;
   private static final int SUM_TO_WIN = 20_000;
+  private static final int MIN_TRAVEL_PRICE = 30;
+  private static final int MAX_TRAVEL_PRICE = 301;
   private int gameDay;
+  private Player player;
   private GameStateListener gameStateListener;
   static final HashMap<String, City> cities = new HashMap<>();
   private CityGraph cityGraph = new CityGraph();
   public Game(){
-    cityGraph.buildGraph();
+    cityGraph.buildGraph(MIN_TRAVEL_PRICE, MAX_TRAVEL_PRICE);
     player = new Player(cityGraph);
     gameDay = 0;
     for (CITY_NAME value : CITY_NAME.values()) {
@@ -71,6 +73,8 @@ public class Game implements PlayerEventListener {
 
   /**
    * sends a random GameEvent to the GameController
+   *
+   * <p> The closer gameDay gets to MAX_DAYS the higher the chance for a non Null-Event</p>
    */
   private void fireEvent() {
     int randomEventIndex = ThreadLocalRandom.current()
@@ -87,7 +91,7 @@ public class Game implements PlayerEventListener {
             ThreadLocalRandom.current().nextInt(CITY_NAME.values().length)
             ].cityName);
         ((GameEvent<City>) event).process(randomCity);
-        msg = "The Market in " + randomCity.getName()  + " acts crazy.\n Experts are baffled.";
+        msg = "The Market in " + randomCity.getName()  + " acts crazy.\nExperts are baffled.";
       }
       case POTION -> {
         Potion randomPotion = Potion.values()[ThreadLocalRandom.current().nextInt(Potion.values().length)];

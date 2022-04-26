@@ -11,7 +11,8 @@ public enum CITY_NAME implements Buyable{
   HOBBINGEN("Hobbingen"),
   TRISTRAM("Tristram"),
   CAMELOT("Camelot"),
-  ATLANTIS("Atlantis");
+  ATLANTIS("Atlantis"),
+  TIRNANOG("TirNaNog");
 
   @Override
   public Collection getValues() {
