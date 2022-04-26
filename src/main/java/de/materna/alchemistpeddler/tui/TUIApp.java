@@ -2,17 +2,13 @@ package de.materna.alchemistpeddler.tui;
 
 
 import com.googlecode.lanterna.gui2.Container;
-
 import com.googlecode.lanterna.gui2.MultiWindowTextGUI;
-
 import com.googlecode.lanterna.gui2.WindowBasedTextGUI;
-
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger;
-
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import java.io.IOException;
 

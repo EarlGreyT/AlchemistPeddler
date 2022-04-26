@@ -19,12 +19,12 @@ class PlayerTest{
     Player testPlayer = new Player(); // player starts with an empty inventory!
     testPlayer.setLocation(mockCity); //player is in a City
     int playerCurrency = testPlayer.getCurrency();
-    given(mockCity.price(Potion.FIRE)).willReturn(Potion.FIRE.getBasePrice()); //the city has a price for the Potion
+    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.getBasePrice()); //the city has a price for the Potion
     //when
-    testPlayer.sell(Potion.FIRE,20);
+    testPlayer.sell(TEST_POTION,20);
     //then
     int expectedQuantity = 0;
-    int actualQuantity = testPlayer.getInventoryAsList().get(Potion.FIRE.ordinal());
+    int actualQuantity = testPlayer.getInventoryAsList().get(TEST_POTION.ordinal());
     int expectedCurrency = playerCurrency;
     int actualCurrency = testPlayer.getCurrency();
     assertEquals(expectedQuantity, actualQuantity);

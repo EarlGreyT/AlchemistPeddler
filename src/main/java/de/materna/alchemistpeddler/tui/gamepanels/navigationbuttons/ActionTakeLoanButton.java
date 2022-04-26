@@ -5,10 +5,8 @@ import static de.materna.alchemistpeddler.tui.TUIApp.gameController;
 
 import com.googlecode.lanterna.gui2.Button;
 import com.googlecode.lanterna.gui2.dialogs.TextInputDialogBuilder;
-
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
-import de.materna.alchemistpeddler.tui.GameController;
 import de.materna.alchemistpeddler.tui.TUIApp;
 import java.util.regex.Pattern;
 

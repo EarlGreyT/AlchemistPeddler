@@ -1,6 +1,5 @@
 package de.materna.alchemistpeddler.gameuicommunication;
 
-import de.materna.alchemistpeddler.gamelogic.GameEvent;
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
 import de.materna.alchemistpeddler.gamelogic.GameState;
 import java.util.HashMap;

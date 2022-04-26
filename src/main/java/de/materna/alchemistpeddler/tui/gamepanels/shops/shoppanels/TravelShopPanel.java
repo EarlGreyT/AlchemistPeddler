@@ -3,9 +3,9 @@ package de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels;
 import static de.materna.alchemistpeddler.tui.TUIApp.gameController;
 
 import com.googlecode.lanterna.gui2.GridLayout;
+import de.materna.alchemistpeddler.gamelogic.CityGraph;
 import de.materna.alchemistpeddler.gamelogic.CityRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
-import de.materna.alchemistpeddler.gamelogic.CityGraph;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.ShopPanel;
 
 public class TravelShopPanel extends ShopPanel {

@@ -1,9 +1,9 @@
 package de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels;
 
 import com.googlecode.lanterna.gui2.Button;
+import de.materna.alchemistpeddler.gamelogic.CityGraph;
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
-import de.materna.alchemistpeddler.gamelogic.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.tui.GameController;

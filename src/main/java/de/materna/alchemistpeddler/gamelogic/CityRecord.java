@@ -1,8 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Representation of the State of a City.

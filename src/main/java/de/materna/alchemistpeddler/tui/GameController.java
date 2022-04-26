@@ -4,7 +4,6 @@ package de.materna.alchemistpeddler.tui;
 import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
 import static de.materna.alchemistpeddler.tui.TUIApp.gui;
 
-
 import com.googlecode.lanterna.gui2.dialogs.ActionListDialogBuilder;
 import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;

@@ -1,16 +1,10 @@
 package de.materna.alchemistpeddler.tui.gamepanels;
 
-import static de.materna.alchemistpeddler.tui.TUIApp.gameController;
-import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
-import static de.materna.alchemistpeddler.tui.TUIApp.gui;
 
-import com.googlecode.lanterna.gui2.Button;
 import com.googlecode.lanterna.gui2.Direction;
-import com.googlecode.lanterna.gui2.Interactable;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
-import de.materna.alchemistpeddler.gamelogic.Game;
-import de.materna.alchemistpeddler.tui.GameController;
+
 
 public class GamePanel extends Panel {
   private final PlayerPanel playerPanel;
