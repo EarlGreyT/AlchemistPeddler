@@ -55,7 +55,7 @@ class City {
    * @return Price of a Potion at least MIN_PRICE.
    */
    int price(Potion potion) {
-    int potionPrice = potion.basePrice;
+    int potionPrice = potion.getBasePrice();
     int potionAmount = potionAmounts[potion.ordinal()];
     int potionProduction = potionProductions[potion.ordinal()];
     int potionConsumption = potionConsumptions[potion.ordinal()];

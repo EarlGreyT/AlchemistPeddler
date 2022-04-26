@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
   static final int MAX_DAYS = 30;
-  private final Player player;
+  private Player player;
   private static final int SUM_TO_WIN = 20_000;
   private int gameDay;
   private final GameStateListener gameStateListener;
@@ -141,5 +141,7 @@ public class Game implements PlayerEventListener {
     return cities;
   }
 
-
+  public void setPlayer(Player player) {
+    this.player = player;
+  }
 }

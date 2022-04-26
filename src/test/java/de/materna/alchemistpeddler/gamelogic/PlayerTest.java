@@ -21,7 +21,7 @@ class PlayerSellTest {
     Player testPlayer = new Player(); // player starts with an empty inventory!
     testPlayer.setLocation(mockCity); //player is in a City
     int playerCurrency = testPlayer.getCurrency();
-    given(mockCity.price(Potion.FIRE)).willReturn(Potion.FIRE.basePrice); //the city has a price for the Potion
+    given(mockCity.price(Potion.FIRE)).willReturn(Potion.FIRE.getBasePrice()); //the city has a price for the Potion
     //when
     testPlayer.sell(Potion.FIRE,20);
     //then
@@ -41,7 +41,7 @@ class PlayerSellTest {
     testPlayer.setLocation(mockCity); // player is in a City
     int playerCurrency = testPlayer.getCurrency();
     testPlayer.inventory[TEST_POTION.ordinal()] = 5; // the player carries 5 potions with them
-    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.basePrice); //the city has a price for the Potion
+    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.getBasePrice()); //the city has a price for the Potion
     //when
     testPlayer.sell(TEST_POTION,5);
     int expectedCurrency = playerCurrency + 5*mockCity.price(TEST_POTION);
@@ -62,7 +62,7 @@ class PlayerBuyTest {
     City mockCity = mock(City.class);
     testPlayer.setLocation(mockCity);
     testPlayer.setCurrency(0); // the player has no money
-    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.basePrice);
+    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.getBasePrice());
     //when
     testPlayer.buy(TEST_POTION,20);
     //then
@@ -79,14 +79,14 @@ class PlayerBuyTest {
     City mockCity = mock(City.class);
     testPlayer.setLocation(mockCity);
     testPlayer.setCurrency(1000); // the player has money
-    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.basePrice);
+    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.getBasePrice());
     given(mockCity.sellPotion(TEST_POTION,3)).willReturn(3); // the city has 3 potions to sell
     //when
     testPlayer.buy(TEST_POTION,3);
     //then
     int expectedAmount = 3;
     int actualAmount = testPlayer.inventory[TEST_POTION.ordinal()];
-    int expectedCurrency = 1000 - 3*TEST_POTION.basePrice;
+    int expectedCurrency = 1000 - 3*TEST_POTION.getBasePrice();
     int actualCurrency = testPlayer.getCurrency();
     assertEquals(expectedAmount,actualAmount);
     assertEquals(expectedCurrency, actualCurrency);

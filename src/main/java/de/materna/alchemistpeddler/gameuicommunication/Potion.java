@@ -21,8 +21,10 @@ public enum Potion implements Buyable {
   FIRE(50);
 
 
-  public final int basePrice;
-
+  private final int basePrice;
+  public int getBasePrice(){
+    return basePrice;
+  }
   Potion(int basePrice) {
     this.basePrice = basePrice;
   }
