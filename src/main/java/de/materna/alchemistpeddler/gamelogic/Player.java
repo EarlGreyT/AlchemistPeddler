@@ -53,7 +53,7 @@ class Player {
   void travel(City dest) {
     CITY_NAME locationName = CITY_NAME.valueOf(location.getName().toUpperCase());
     CITY_NAME destName = CITY_NAME.valueOf(dest.getName().toUpperCase());
-    int travelCost = cityGraph.routes.get(locationName).get(destName).cost();
+    int travelCost = cityGraph.getPrice(locationName,destName);
     if (travelCost <= currency) {
       location = dest;
       currency = currency - travelCost;

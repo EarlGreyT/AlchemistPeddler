@@ -22,7 +22,7 @@ public class DestinationPanel extends BuyablePanel {
     CITY_NAME location = CITY_NAME.valueOf(cityRecord.name().toUpperCase());
     CITY_NAME destination = CITY_NAME.valueOf(nameLabel.getText().toUpperCase());
     CityGraph cityGraph = gameController.getLastGameState().cityGraph();
-    int travelCost = cityGraph.routes.get(location).get(destination).cost();
+    int travelCost = cityGraph.getPrice(location,destination);
     priceLabel.setText(travelCost);
   }
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public final class CityGraph {
 
-  public  EnumMap<CITY_NAME, EnumMap<CITY_NAME, Route>> routes  = new EnumMap<>(CITY_NAME.class);
+  private  EnumMap<CITY_NAME, EnumMap<CITY_NAME, Route>> routes  = new EnumMap<>(CITY_NAME.class);
   public  void buildGraph(){
     for (CITY_NAME from: CITY_NAME.values()){
       EnumMap<CITY_NAME, Route> destMap = new EnumMap<>(CITY_NAME.class);
@@ -24,5 +24,8 @@ public final class CityGraph {
       }
       routes.put(from, destMap);
     }
+  }
+  public int getPrice(CITY_NAME from, CITY_NAME dest){
+    return routes.get(from).get(dest).cost();
   }
 }

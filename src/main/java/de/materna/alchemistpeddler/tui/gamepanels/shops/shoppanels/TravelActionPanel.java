@@ -19,7 +19,8 @@ public class TravelActionPanel extends ShopActionPanel {
             GameController gameController =TUIApp.gameController;
             CityGraph cityGraph = gameController.getLastGameState().cityGraph();
             PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
-            int amount = cityGraph.routes.get(CITY_NAME.valueOf(playerRecord.location().name().toUpperCase())).get(city_name).cost();
+            CITY_NAME location = CITY_NAME.valueOf(playerRecord.location().name().toUpperCase());
+            int amount = cityGraph.getPrice(location,city_name);
             gameController.inform(gameController.getGame(), new PlayerEvent(action, city_name.ordinal(),amount));
             TUIApp.gameWindow.getGamePanel().getLocationPanel().setInfoPanel(shopFactory.getShop(city_name), city_name.cityName);
           }

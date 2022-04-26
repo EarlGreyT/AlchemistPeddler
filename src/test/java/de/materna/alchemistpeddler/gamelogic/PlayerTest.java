@@ -1,7 +1,10 @@
 package de.materna.alchemistpeddler.gamelogic;
 
 
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
+import java.util.EnumMap;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import static org.mockito.BDDMockito.*;
@@ -87,5 +90,58 @@ class PlayerBuyTest {
     int actualCurrency = testPlayer.getCurrency();
     assertEquals(expectedAmount,actualAmount);
     assertEquals(expectedCurrency, actualCurrency);
+  }
+}
+
+class PlayerTravelTest{
+  public static final CITY_NAME testLocationName = CITY_NAME.ATLANTIS;
+  public static final CITY_NAME testDestinationName = CITY_NAME.TRISTRAM;
+  @Test
+  void testPlayerTravelsToNewLocation(){
+    //given
+    CityGraph mockCityGraph = mock(CityGraph.class);
+
+    Player testPlayer = new Player(mockCityGraph);
+    City mockCity = mock(City.class);
+    City mockDestinationCity = mock(City.class);
+
+    testPlayer.setLocation(mockCity);
+    given(mockCity.getName()).willReturn(testLocationName.cityName);//player is in testLocation
+    given(mockDestinationCity.getName()).willReturn(testDestinationName.cityName); //destination is testDestination
+    given(mockCityGraph.getPrice(testLocationName,testDestinationName)).willReturn(200);
+    testPlayer.setCurrency(250); //player can afford the travel costs
+    //when
+    testPlayer.travel(mockDestinationCity);
+    //then
+    int expectedCurrency = 50;
+    int actualCurrency = testPlayer.getCurrency();
+    City expectedLocation = mockDestinationCity;
+    City actualLocation = testPlayer.getLocation();
+    assertEquals(expectedCurrency,actualCurrency);
+    assertEquals(expectedLocation, actualLocation);
+  }
+  @Test
+  void testPlayerCantAffordTravelCosts(){
+    //given
+    CityGraph mockCityGraph = mock(CityGraph.class);
+
+    Player testPlayer = new Player(mockCityGraph);
+    City mockCity = mock(City.class);
+    City mockDestinationCity = mock(City.class);
+
+    testPlayer.setLocation(mockCity);
+    given(mockCity.getName()).willReturn(testLocationName.cityName);//player is in testLocation
+    given(mockDestinationCity.getName()).willReturn(testDestinationName.cityName); //destination is testDestination
+    given(mockCityGraph.getPrice(testLocationName,testDestinationName)).willReturn(200);
+    testPlayer.setCurrency(150); //player can afford the travel costs
+    //when
+    testPlayer.travel(mockDestinationCity);
+    //then
+    int expectedCurrency = 150;
+    int actualCurrency = testPlayer.getCurrency();
+    City expectedLocation = mockCity;
+    City actualLocation = testPlayer.getLocation();
+    assertEquals(expectedCurrency,actualCurrency);
+    assertEquals(expectedLocation, actualLocation);
   }
 }

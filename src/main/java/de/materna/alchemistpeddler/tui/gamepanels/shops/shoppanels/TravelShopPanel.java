@@ -18,9 +18,8 @@ public class TravelShopPanel extends ShopPanel {
         .setVerticalSpacing(1)
     );
     for (CITY_NAME city_name : CITY_NAME.values()) {
-      int travelCost = cityGraph.routes
-          .get(CITY_NAME.valueOf(cityRecord.name().toUpperCase()))
-          .get(city_name).cost();
+      CITY_NAME from = CITY_NAME.valueOf(cityRecord.name().toUpperCase());
+      int travelCost = cityGraph.getPrice(from,city_name);
       NameLabel nameLabel = new NameLabel(city_name.cityName);
       AmountLabel priceLabel = new AmountLabel("Price");
       priceLabel.setText(travelCost);
