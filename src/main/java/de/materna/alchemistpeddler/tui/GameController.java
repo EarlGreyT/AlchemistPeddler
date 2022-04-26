@@ -11,6 +11,7 @@ import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.gamelogic.GameEvent;
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
 import de.materna.alchemistpeddler.gamelogic.GameState;
+import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
@@ -53,7 +54,7 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
   public final EnumMap<PlayerAction, AbstractShopFactory> shopFactories = new EnumMap<>(
       PlayerAction.class);
   private GameState lastGameState;
-  private Game game = new Game(this);
+  private Game game;
 
   public GameController() {
     shopFactories.put(PlayerAction.TRAVEL, new TravelShopFactory());
@@ -83,6 +84,9 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
             .setTitle("Do you wish to play a new Game?")
             .addAction("Yes", () -> {
               startNewGame();
+              gamePanel.setEventPanel(new EventPanel("""
+                  This your first day, again!
+                  """));
             })
             .addAction("No", () -> System.exit(0))
             .build()
@@ -142,7 +146,9 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
 
 
   public void startNewGame() {
+    CityGraph.buildGraph();
     this.game = new Game(this);
+    GamePanel gamePanel = gameWindow.getGamePanel();
   }
   public Game getGame(){
     return game;

@@ -18,7 +18,7 @@ import de.materna.alchemistpeddler.tui.gamepanels.shops.AbstractShopFactory;
 public class ActionBuyButton extends Button {
 
   public ActionBuyButton() {
-    super("Buy potions",
+    super("Potion Shop",
         () -> {
           PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
           String playerLocationName = playerRecord.location().name();

@@ -25,7 +25,7 @@ public class TUIApp implements PlayerEventGenerator {
   public static WindowBasedTextGUI gui;
 
   public static void main(String[] args) throws IOException, InterruptedException {
-    CityGraph.buildGraph();
+    gameController.startNewGame();
     DefaultTerminalFactory factory = new DefaultTerminalFactory();
     factory.setTerminalEmulatorFrameAutoCloseTrigger(
         TerminalEmulatorAutoCloseTrigger.CloseOnExitPrivateMode);

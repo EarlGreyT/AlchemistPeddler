@@ -106,9 +106,10 @@ class Player {
    */
   int buy(Potion potion, int amount) {
     int price = location.price(potion);
-    if (checkInventoryCapacity(amount) && price <= currency) {
-      currency -= price;
-      inventory[potion.ordinal()] += location.sellPotion(potion, amount);
+    if (checkInventoryCapacity(amount) && (price*amount) <= currency) {
+      int amountBought = location.sellPotion(potion, amount);
+      currency -= price*amountBought;
+      inventory[potion.ordinal()] += amountBought;
       return inventory[potion.ordinal()];
     }
     return 0;
@@ -123,10 +124,11 @@ class Player {
    */
   int sell(Potion potion, int amount) {
     if (inventory[potion.ordinal()] >= amount) {
-      currency += location.price(potion) * amount;
-      inventory[potion.ordinal()] -= location.buyPotion(potion, amount);
+      int amountSold = location.buyPotion(potion, amount);
+      currency += location.price(potion) * amountSold;
+      inventory[potion.ordinal()] -= amountSold;
     }
-    return inventory[potion.ordinal()];
+    return sell(potion ,inventory[potion.ordinal()]);
 
   }
 

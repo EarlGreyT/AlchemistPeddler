@@ -15,7 +15,7 @@ public class ActionTravelButton extends Button {
 
 
   public ActionTravelButton() {
-    super("travel", () -> {
+    super("Travel Agency", () -> {
       AbstractShopFactory shopFactory = gameController.shopFactories.get(PlayerAction.TRAVEL);
       PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
       CITY_NAME playerLocationName = CITY_NAME.valueOf(playerRecord.location().name().toUpperCase());
