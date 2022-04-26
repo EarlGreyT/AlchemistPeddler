@@ -124,8 +124,9 @@ class Player {
    */
   void sell(Potion potion, int amount) {
     int amountToSell = Math.min(amount,inventory[potion.ordinal()]);
-    currency += location.price(potion) * amountToSell;
-    inventory[potion.ordinal()] -= amountToSell;
+    int amountSold = location.buyPotion(potion, amountToSell);
+    currency += location.price(potion) * amountSold;
+    inventory[potion.ordinal()] -= amountSold;
   }
 
   void setLocation(City location) {
