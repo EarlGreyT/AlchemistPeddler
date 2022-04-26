@@ -128,10 +128,6 @@ public class Game implements PlayerEventListener {
     player.setWon((gameDay > MAX_DAYS) && (player.getCurrency() >= SUM_TO_WIN) && (player.getDebt()<=0));
   }
 
-  public CityGraph getCityGraph() {
-    return cityGraph;
-  }
-
   public Player getPlayer() {
     return player;
   }

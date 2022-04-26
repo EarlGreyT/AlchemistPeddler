@@ -18,10 +18,13 @@ class CityTest {
     Potion mockPotion = mock(Potion.class);
     City testCity = new City(TEST_CITY);
     given(mockPotion.getBasePrice()).willReturn(0);
+    testCity.getPotionAmounts()[TEST_POTION.ordinal()] = 0;
     //when
     int price = testCity.price(mockPotion);
+    int priceForRarePotion = testCity.price(TEST_POTION);
     //then
     assertTrue(price>=10);
+    assertTrue(priceForRarePotion>=10);
   }
 
   @Test

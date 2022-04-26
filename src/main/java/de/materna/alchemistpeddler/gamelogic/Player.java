@@ -17,10 +17,10 @@ class Player {
   private boolean lost = false;
   private CityGraph cityGraph;
 
-  public Player() {
+  Player() {
   }
 
-  public Player(CityGraph cityGraph) {
+  Player(CityGraph cityGraph) {
     this();
     this.cityGraph = cityGraph;
   }
@@ -85,9 +85,7 @@ class Player {
     return potionCapacity;
   }
 
-  void setPotionCapacity(int potionCapacity) {
-    this.potionCapacity = potionCapacity;
-  }
+
 
   int getCurrency() {
     return currency;
@@ -97,9 +95,6 @@ class Player {
     this.currency = currency;
   }
 
-  int[] getInventory() {
-    return inventory;
-  }
 
   private boolean checkInventoryCapacity(int amount) {
     int current = Arrays.stream(inventory).sum();
@@ -143,6 +138,13 @@ class Player {
     return inventoryList;
   }
 
+  public CityGraph getCityGraph() {
+    return cityGraph;
+  }
+
+  public void setCityGraph(CityGraph cityGraph) {
+    this.cityGraph = cityGraph;
+  }
 
   public int getDebt() {
     return debt;

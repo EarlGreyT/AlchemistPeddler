@@ -19,7 +19,7 @@ public class GameEventFactory {
         return (GameEvent<Player>) (Player player) -> {
           double stealPercent = ThreadLocalRandom.current().nextDouble(0, 0.26);
           int targetCurrency = (int) (player.getCurrency() * (1.0 - stealPercent));
-          player.setCurrency(targetCurrency > 0 ?  targetCurrency : 0);
+          player.setCurrency(Math.max(targetCurrency, 0));
           return EventName.ROB;
         };
       }
