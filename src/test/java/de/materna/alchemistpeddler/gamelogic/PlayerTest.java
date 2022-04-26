@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.BDDMockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class PlayerSellTest {
-
+class PlayerTest{
   public static final Potion TEST_POTION = Potion.FIRE;
-
+  public static final CITY_NAME testLocationName = CITY_NAME.ATLANTIS;
+  public static final CITY_NAME testDestinationName = CITY_NAME.TRISTRAM;
   @Test
   void testCantSellMoreThanPlayerHas(){
     //given
@@ -49,10 +49,7 @@ class PlayerSellTest {
     assertEquals(expectedCurrency,actualCurrency);
     assertEquals(expectedAmount,actualAmount);
   }
-}
 
-class PlayerBuyTest {
-  public static final Potion TEST_POTION = Potion.FIRE;
   @Test
   void testPlayerCantBuyWithoutMoney(){
     //given
@@ -89,11 +86,8 @@ class PlayerBuyTest {
     assertEquals(expectedAmount,actualAmount);
     assertEquals(expectedCurrency, actualCurrency);
   }
-}
 
-class PlayerTravelTest{
-  public static final CITY_NAME testLocationName = CITY_NAME.ATLANTIS;
-  public static final CITY_NAME testDestinationName = CITY_NAME.TRISTRAM;
+
   @Test
   void testPlayerTravelsToNewLocation(){
     //given
@@ -142,4 +136,5 @@ class PlayerTravelTest{
     assertEquals(expectedCurrency,actualCurrency);
     assertEquals(expectedLocation, actualLocation);
   }
+
 }

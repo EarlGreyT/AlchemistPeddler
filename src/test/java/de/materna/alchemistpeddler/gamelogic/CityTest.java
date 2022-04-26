@@ -48,7 +48,7 @@ class CityTest {
   }
 
   @Test
-  void buyPotionWontIncreaseAmountBeforeUpdate() {
+  void testBuyPotionWontIncreaseAmountBeforeUpdate() {
     City testCity = new City(TEST_CITY);
     int expectedAmountBeforeUpdate = testCity.getPotionAmounts()[TEST_POTION.ordinal()];
     //when
@@ -62,7 +62,7 @@ class CityTest {
   }
 
   @Test
-  void modifyPotionProductionCantForceNegativeProduction() {
+  void testModifyPotionProductionCantForceNegativeProduction() {
     City testCity = new City(TEST_CITY);
     int testPotionProduction = testCity.getPotionProductions()[TEST_POTION.ordinal()];
     //when
@@ -74,7 +74,7 @@ class CityTest {
   }
 
   @Test
-  void modifyPotionConsumptionCantForceNegativeConsumption() {
+  void testModifyPotionConsumptionCantForceNegativeConsumption() {
     City testCity = new City(TEST_CITY);
     int testPotionConsumption = testCity.getPotionConsumptions()[TEST_POTION.ordinal()];
     //when
