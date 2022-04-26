@@ -39,15 +39,19 @@ class PlayerTest{
     testPlayer.setLocation(mockCity); // player is in a City
     int playerCurrency = testPlayer.getCurrency();
     testPlayer.inventory[TEST_POTION.ordinal()] = 5; // the player carries 5 potions with them
-    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.getBasePrice()); //the city has a price for the Potion
+    given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.getBasePrice()); //// the city has a price for the Potion
+    given(mockCity.buyPotion(TEST_POTION,5)).willReturn(5); //city has 5 potions to sell
     //when
     testPlayer.sell(TEST_POTION,5);
-    int expectedCurrency = playerCurrency + 5*mockCity.price(TEST_POTION);
+    //then
+    then(mockCity).should(atMostOnce()).buyPotion(TEST_POTION,5);
+    int expectedCurrency = playerCurrency + mockCity.buyPotion(TEST_POTION,5)*mockCity.price(TEST_POTION);
     int actualCurrency = testPlayer.getCurrency();
     int expectedAmount = 0;
     int actualAmount = testPlayer.inventory[TEST_POTION.ordinal()];
     assertEquals(expectedCurrency,actualCurrency);
     assertEquals(expectedAmount,actualAmount);
+
   }
 
   @Test
