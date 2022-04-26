@@ -38,14 +38,15 @@ class PlayerTest{
     Player testPlayer = new Player();
     testPlayer.setLocation(mockCity); // player is in a City
     int playerCurrency = testPlayer.getCurrency();
-    testPlayer.inventory[TEST_POTION.ordinal()] = 5; // the player carries 5 potions with them
+    int potionsToBuy = 5;
+    testPlayer.inventory[TEST_POTION.ordinal()] = potionsToBuy; // the player carries 5 potions with them
     given(mockCity.price(TEST_POTION)).willReturn(TEST_POTION.getBasePrice()); //// the city has a price for the Potion
-    given(mockCity.buyPotion(TEST_POTION,5)).willReturn(5); //city has 5 potions to sell
+    given(mockCity.buyPotion(TEST_POTION,potionsToBuy)).willReturn(potionsToBuy); //city has 5 potions to sell
     //when
-    testPlayer.sell(TEST_POTION,5);
+    testPlayer.sell(TEST_POTION,potionsToBuy);
     //then
-    then(mockCity).should(atMostOnce()).buyPotion(TEST_POTION,5);
-    int expectedCurrency = playerCurrency + mockCity.buyPotion(TEST_POTION,5)*mockCity.price(TEST_POTION);
+    then(mockCity).should(atMostOnce()).buyPotion(TEST_POTION,potionsToBuy);
+    int expectedCurrency = playerCurrency + mockCity.buyPotion(TEST_POTION,potionsToBuy)*mockCity.price(TEST_POTION);
     int actualCurrency = testPlayer.getCurrency();
     int expectedAmount = 0;
     int actualAmount = testPlayer.inventory[TEST_POTION.ordinal()];
@@ -68,12 +69,13 @@ class PlayerTest{
     int expectedAmount = 0;
     int actualAmount = testPlayer.inventory[TEST_POTION.ordinal()];
     int expectedCurrency = 0;
-    int actualCurrency = 0;
+    int actualCurrency = testPlayer.getCurrency();
     assertEquals(expectedAmount,actualAmount);
     assertEquals(expectedCurrency, actualCurrency);
   }
   @Test
   void testPlayerCanBuyPotion(){
+    //given
     Player testPlayer = new Player();
     City mockCity = mock(City.class);
     testPlayer.setLocation(mockCity);
@@ -124,7 +126,6 @@ class PlayerTest{
     Player testPlayer = new Player(mockCityGraph);
     City mockCity = mock(City.class);
     City mockDestinationCity = mock(City.class);
-
     testPlayer.setLocation(mockCity);
     given(mockCity.getName()).willReturn(testLocationName.cityName);//player is in testLocation
     given(mockDestinationCity.getName()).willReturn(testDestinationName.cityName); //destination is testDestination
