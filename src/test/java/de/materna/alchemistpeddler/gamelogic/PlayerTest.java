@@ -2,11 +2,9 @@ package de.materna.alchemistpeddler.gamelogic;
 
 
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
-import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
-import java.util.EnumMap;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+
 import static org.mockito.BDDMockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -2,7 +2,6 @@ package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
-import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;

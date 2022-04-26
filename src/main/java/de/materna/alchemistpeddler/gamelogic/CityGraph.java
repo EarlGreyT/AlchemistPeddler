@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.gameuicommunication;
+package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.Route;
