@@ -19,12 +19,18 @@ class CityTest {
     City testCity = new City(TEST_CITY);
     given(mockPotion.getBasePrice()).willReturn(0);
     testCity.getPotionAmounts()[TEST_POTION.ordinal()] = 0;
+    testCity.getPotionProductions()[TEST_POTION.ordinal()] =1;
+    testCity.getPotionConsumptions()[TEST_POTION.ordinal()] =10;
     //when
     int price = testCity.price(mockPotion);
     int priceForRarePotion = testCity.price(TEST_POTION);
+    testCity.getPotionAmounts()[TEST_POTION.ordinal()] = 20;
+    testCity.getPotionProductions()[TEST_POTION.ordinal()] =10;
+    testCity.getPotionConsumptions()[TEST_POTION.ordinal()] =5;
+    int priceForNonRarePotion = testCity.price(TEST_POTION);
     //then
     assertTrue(price>=10);
-    assertTrue(priceForRarePotion>=10);
+    assertTrue(priceForRarePotion>=priceForNonRarePotion);
   }
 
   @Test
