@@ -20,7 +20,8 @@ class GameTest {
   @Test
   void testGetUpdateCallsApropiatePlayerMethods() {
     GameController gameController = mock(GameController.class);
-    Game testGame = new Game(gameController);
+    Game testGame = spy(Game.class);
+    testGame.setGameStateListener(gameController);
     Player mockPLayer = spy(Player.class);
     mockPLayer.setLocation(testGame.getPlayer().getLocation());
     mockPLayer.setCityGraph(testGame.getPlayer().getCityGraph());
@@ -32,16 +33,17 @@ class GameTest {
     PlayerEvent testPlayerTravelEvent = new PlayerEvent(PlayerAction.TRAVEL,TEST_DESTINATION.ordinal(),0);
     //when
     testGame.getUpdate(testBuyEvent);
-    testGame.getUpdate(testSellEvent);
-    testGame.getUpdate(testTakeLoanEvent);
-    testGame.getUpdate(testPayLoanEvent);
-    testGame.getUpdate(testPlayerTravelEvent);
-    //then
     Mockito.verify(mockPLayer, times(1)).buy(TEST_POTION,10);
+    testGame.getUpdate(testSellEvent);
     Mockito.verify(mockPLayer, times(1)).sell(TEST_POTION,10);
+    testGame.getUpdate(testTakeLoanEvent);
     Mockito.verify(mockPLayer, times(1)).takeLoan(10);
+    testGame.getUpdate(testPayLoanEvent);
     Mockito.verify(mockPLayer, times(1)).payLoan(10);
+    testGame.getUpdate(testPlayerTravelEvent);
+    Mockito.verify(testGame, times(1)).nextDay();
     Mockito.verify(mockPLayer,times(1)).travel(testGame.getCities().get(cityName));
+
 
   }
 }

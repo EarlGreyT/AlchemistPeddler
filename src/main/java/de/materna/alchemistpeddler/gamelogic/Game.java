@@ -19,14 +19,13 @@ public class Game implements PlayerEventListener {
   private Player player;
   private static final int SUM_TO_WIN = 20_000;
   private int gameDay;
-  private final GameStateListener gameStateListener;
+  private GameStateListener gameStateListener;
   static final HashMap<String, City> cities = new HashMap<>();
   private CityGraph cityGraph = new CityGraph();
-  public Game(PlayerEventGenerator generator) {
+  public Game(){
     cityGraph.buildGraph();
     player = new Player(cityGraph);
     gameDay = 0;
-    gameStateListener = (GameStateListener) generator;
     for (CITY_NAME value : CITY_NAME.values()) {
       cities.put(value.cityName, new City(value));
     }
@@ -34,6 +33,10 @@ public class Game implements PlayerEventListener {
         CITY_NAME.values()[
             ThreadLocalRandom.current().nextInt(0, cities.size())].cityName)
     );
+  }
+  public Game(PlayerEventGenerator generator) {
+    this();
+    gameStateListener = (GameStateListener) generator;
     updateGameState();
   }
 
@@ -116,7 +119,7 @@ public class Game implements PlayerEventListener {
    * increases the current day by one, causes every city to update,
    * sends a GameEvent to the GameController and sets the players win/loss status according tu the current game state
    */
-  private void nextDay() {
+  void nextDay() {
     gameDay++;
     cities.forEach((name, city) -> city.update());
     fireEvent();
@@ -134,6 +137,11 @@ public class Game implements PlayerEventListener {
 
   public HashMap<String, City> getCities() {
     return cities;
+  }
+
+  public void setGameStateListener(
+      GameStateListener gameStateListener) {
+    this.gameStateListener = gameStateListener;
   }
 
   public void setPlayer(Player player) {
