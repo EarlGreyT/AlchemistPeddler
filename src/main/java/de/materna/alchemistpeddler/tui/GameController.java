@@ -1,17 +1,14 @@
 package de.materna.alchemistpeddler.tui;
 
-import static de.materna.alchemistpeddler.tui.TUIApp.gameController;
+
 import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
 import static de.materna.alchemistpeddler.tui.TUIApp.gui;
 
-import com.googlecode.lanterna.gui2.BasicWindow;
-import com.googlecode.lanterna.gui2.Button;
+
 import com.googlecode.lanterna.gui2.dialogs.ActionListDialogBuilder;
 import de.materna.alchemistpeddler.gamelogic.Game;
-import de.materna.alchemistpeddler.gamelogic.GameEvent;
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
 import de.materna.alchemistpeddler.gamelogic.GameState;
-import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
@@ -25,6 +22,7 @@ import java.util.HashMap;
 
 /**
  * This Listens for GameState changes and GameEvents, it also sends PlayerEvents to the Game.
+ *
  * @see Game
  */
 public class GameController implements PlayerEventGenerator, GameStateListener {
@@ -64,8 +62,8 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
 
   /**
    * Receives the new GameState and triggers an update of UI elements
-   * @param gameState - the new GameState
    *
+   * @param gameState - the new GameState
    */
   @Override
   public GameState getGameState(GameState gameState) {
@@ -80,30 +78,22 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
       if (gameState.playerRecord().hasLost()) {
         GamePanel gamePanel = gameWindow.getGamePanel();
         gamePanel.gameLost();
-        new ActionListDialogBuilder()
-            .setTitle("Do you wish to play a new Game?")
+        new ActionListDialogBuilder().setTitle("Do you wish to play a new Game?")
             .addAction("Yes", () -> {
               startNewGame();
               gamePanel.setEventPanel(new EventPanel("""
                   This your first day, again!
                   """));
-            })
-            .addAction("No", () -> System.exit(0))
-            .build()
-            .showDialog(gui);
+            }).addAction("No", () -> System.exit(0)).build().showDialog(gui);
       }
       if (gameState.playerRecord().hasWon()) {
         GamePanel gamePanel = gameWindow.getGamePanel();
         gamePanel.gameWon();
 
-        new ActionListDialogBuilder()
-            .setTitle("Do you wish to play a new Game?")
+        new ActionListDialogBuilder().setTitle("Do you wish to play a new Game?")
             .addAction("Yes", () -> {
               startNewGame();
-            })
-            .addAction("No", () -> System.exit(0))
-            .build()
-            .showDialog(gui);
+            }).addAction("No", () -> System.exit(0)).build().showDialog(gui);
 
       }
     }
@@ -112,6 +102,7 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
 
   /**
    * Receives Notifications about GameEvents and updates UI elements accordingly
+   *
    * @param event
    * @param msg
    * @return
@@ -146,11 +137,10 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
 
 
   public void startNewGame() {
-    CityGraph.buildGraph();
     this.game = new Game(this);
-    GamePanel gamePanel = gameWindow.getGamePanel();
   }
-  public Game getGame(){
+
+  public Game getGame() {
     return game;
   }
 }

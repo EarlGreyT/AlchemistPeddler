@@ -2,6 +2,7 @@ package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventListener;
@@ -16,13 +17,15 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
   static final int MAX_DAYS = 30;
-  private Player player = new Player();
+  private final Player player;
   private static final int SUM_TO_WIN = 20_000;
   private int gameDay;
   private final GameStateListener gameStateListener;
   static final HashMap<String, City> cities = new HashMap<>();
-
+  private CityGraph cityGraph = new CityGraph();
   public Game(PlayerEventGenerator generator) {
+    cityGraph.buildGraph();
+    player = new Player(cityGraph);
     gameDay = 0;
     gameStateListener = (GameStateListener) generator;
     for (CITY_NAME value : CITY_NAME.values()) {
@@ -107,7 +110,7 @@ public class Game implements PlayerEventListener {
     cities.forEach((name, city) -> cityRecords.add(new CityRecord(city)));
     PlayerRecord playerRecord = new PlayerRecord(player);
     gameStateListener.getGameState(
-        new GameState(cityRecords, playerRecord, gameDay, MAX_DAYS));
+        new GameState(cityRecords, playerRecord, gameDay, MAX_DAYS, cityGraph));
   }
 
   /**
@@ -126,6 +129,9 @@ public class Game implements PlayerEventListener {
     player.setWon((gameDay > MAX_DAYS) && (player.getCurrency() >= SUM_TO_WIN) && (player.getDebt()<=0));
   }
 
+  public CityGraph getCityGraph() {
+    return cityGraph;
+  }
 
   public Player getPlayer() {
     return player;

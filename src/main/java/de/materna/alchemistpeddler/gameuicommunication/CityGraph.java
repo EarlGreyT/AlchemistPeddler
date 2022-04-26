@@ -1,5 +1,7 @@
 package de.materna.alchemistpeddler.gameuicommunication;
 
+import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.Route;
 import java.util.EnumMap;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,8 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public final class CityGraph {
 
-  public static EnumMap<CITY_NAME, EnumMap<CITY_NAME, Route>> routes  = new EnumMap<>(CITY_NAME.class);
-  public static void buildGraph(){
+  public  EnumMap<CITY_NAME, EnumMap<CITY_NAME, Route>> routes  = new EnumMap<>(CITY_NAME.class);
+  public  void buildGraph(){
     for (CITY_NAME from: CITY_NAME.values()){
       EnumMap<CITY_NAME, Route> destMap = new EnumMap<>(CITY_NAME.class);
       for (CITY_NAME dest: CITY_NAME.values()){

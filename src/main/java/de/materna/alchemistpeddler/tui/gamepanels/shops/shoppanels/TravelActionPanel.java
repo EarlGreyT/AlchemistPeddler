@@ -14,11 +14,12 @@ public class TravelActionPanel extends ShopActionPanel {
   public TravelActionPanel() {
     super(PlayerAction.TRAVEL);
     for (CITY_NAME city_name : CITY_NAME.values()) {
-      Button travelButton = new Button("travel to " + city_name.name(),
+      Button travelButton = new Button("travel to " + city_name.cityName,
           () -> {
             GameController gameController =TUIApp.gameController;
+            CityGraph cityGraph = gameController.getLastGameState().cityGraph();
             PlayerRecord playerRecord = gameController.getLastGameState().playerRecord();
-            int amount = CityGraph.routes.get(CITY_NAME.valueOf(playerRecord.location().name().toUpperCase())).get(city_name).cost();
+            int amount = cityGraph.routes.get(CITY_NAME.valueOf(playerRecord.location().name().toUpperCase())).get(city_name).cost();
             gameController.inform(gameController.getGame(), new PlayerEvent(action, city_name.ordinal(),amount));
             TUIApp.gameWindow.getGamePanel().getLocationPanel().setInfoPanel(shopFactory.getShop(city_name), city_name.cityName);
           }

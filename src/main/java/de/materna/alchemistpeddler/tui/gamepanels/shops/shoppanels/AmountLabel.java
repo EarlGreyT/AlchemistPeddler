@@ -3,7 +3,7 @@ package de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels;
 import com.googlecode.lanterna.gui2.Label;
 
 public class AmountLabel extends Label {
-  private String type;
+  private final String type;
   public AmountLabel(Integer potionAmount) {
     this("Amount");
     setText(potionAmount);

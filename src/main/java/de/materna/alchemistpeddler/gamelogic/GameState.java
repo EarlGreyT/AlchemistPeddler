@@ -1,5 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
+import de.materna.alchemistpeddler.gameuicommunication.CityGraph;
 import java.util.List;
 
 /**
@@ -12,6 +13,6 @@ import java.util.List;
  */
 public record GameState(
     List<CityRecord> cityRecords,
-    PlayerRecord playerRecord, int gameDay, int lastDay) {
+    PlayerRecord playerRecord, int gameDay, int lastDay, CityGraph cityGraph) {
 
 }

@@ -13,9 +13,9 @@ import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.tui.GameController;
 
 public class GamePanel extends Panel {
-  private PlayerPanel playerPanel;
-  private LocationPanel locationPanel;
-  private Panel infoField;
+  private final PlayerPanel playerPanel;
+  private final LocationPanel locationPanel;
+  private final Panel infoField;
   private EventPanel eventPanel;
 
   /**

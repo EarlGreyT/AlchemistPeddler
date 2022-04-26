@@ -6,7 +6,7 @@ public interface GameEvent<T> {
     CITY_POTION,
     POTION,
     ROB,
-    NULL;
+    NULL
   }
 
   EventName process(T target);
