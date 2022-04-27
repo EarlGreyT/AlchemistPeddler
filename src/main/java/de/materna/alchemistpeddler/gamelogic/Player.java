@@ -8,6 +8,7 @@ import java.util.List;
 
 class Player {
 
+  public static final double LOAN_SHARK_RATE = 1.5;
   private City location;
   private int potionCapacity = 10;
   private int currency = 500;
@@ -65,7 +66,7 @@ class Player {
    */
   void takeLoan(int amount) {
     currency = currency + amount;
-    debt= debt + amount;
+    debt= (int) (debt +  Math.floor(amount* LOAN_SHARK_RATE));
   }
 
   /**
@@ -84,7 +85,9 @@ class Player {
   int getPotionCapacity() {
     return potionCapacity;
   }
-
+  void setPotionCapacity(int potionCapacity){
+    this.potionCapacity = potionCapacity;
+  }
 
 
   int getCurrency() {
