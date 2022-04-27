@@ -24,7 +24,7 @@ class PlayerTest{
     //when
     testPlayer.sell(TEST_POTION,potionsToSell);
     //then
-    then(mockCity).should(atMostOnce()).buyPotion(TEST_POTION,potionsToSell);
+    then(mockCity).should(never()).buyPotion(TEST_POTION,potionsToSell);
     int expectedQuantity = 0;
     int actualQuantity = testPlayer.getInventoryAsList().get(TEST_POTION.ordinal());
     int expectedCurrency = playerCurrency;
@@ -69,7 +69,7 @@ class PlayerTest{
     //when
     testPlayer.buy(TEST_POTION,potionsToBuy);
     //then
-    then(mockCity).should(atMostOnce()).sellPotion(TEST_POTION,potionsToBuy);
+    then(mockCity).should(never()).sellPotion(TEST_POTION,potionsToBuy);
     int expectedAmount = 0;
     int actualAmount = testPlayer.inventory[TEST_POTION.ordinal()];
     int expectedCurrency = 0;
