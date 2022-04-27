@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game implements PlayerEventListener {
   static final int MAX_DAYS = 30;
-  private static final int SUM_TO_WIN = 20_000;
+  private static final int SUM_TO_WIN = 5_000;
   private static final int MIN_TRAVEL_PRICE = 30;
   private static final int MAX_TRAVEL_PRICE = 301;
   private int gameDay;
@@ -58,8 +58,8 @@ public class Game implements PlayerEventListener {
         player.sell(Potion.values()[event.what()], event.amount());
       }
       case TRAVEL -> {
-        nextDay();
         player.travel(cities.get(CITY_NAME.values()[event.what()].cityName));
+        nextDay();
       }
       case TAKELOAN -> {
         player.takeLoan(event.amount());
@@ -78,8 +78,8 @@ public class Game implements PlayerEventListener {
    */
   private void fireEvent() {
     int randomEventIndex = ThreadLocalRandom.current()
-        .nextInt(EventName.values().length + (MAX_DAYS - gameDay));
-    if (randomEventIndex > EventName.values().length - 1) {
+        .nextInt(EventName.values().length + (MAX_DAYS / gameDay));
+    if (randomEventIndex >= EventName.values().length) {
       randomEventIndex = EventName.NULL.ordinal();
     }
     String msg="";
@@ -128,6 +128,7 @@ public class Game implements PlayerEventListener {
     cities.forEach((name, city) -> city.update());
     fireEvent();
     checkWinCondition();
+    updateGameState();
   }
 
   private void checkWinCondition() {

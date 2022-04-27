@@ -60,15 +60,12 @@ class City {
     int potionProduction = potionProductions[potion.ordinal()];
     int potionConsumption = potionConsumptions[potion.ordinal()];
     int potionAmountDelta = potionProduction - potionConsumption;
-    int potionLastsForDays = potionAmountDelta < 0 ?
-            (Math.floorDiv(potionAmount, Math.abs(potionAmountDelta)))
-            : Integer.MAX_VALUE;
+    double potionLastsForDays = potionAmountDelta < 0 ?
+            potionAmount / Math.max(Math.abs(potionAmountDelta),0.1)
+            : 5;
     double productionConsumptionRatio = (double) potionConsumption
-        / (double) potionProduction;
-    potionPrice = (int) Math.floor(potionPrice * productionConsumptionRatio);
-    if (potionLastsForDays <= 2) {
-      potionPrice = potionPrice * RUNOUT_FACTOR;
-    }
+        / Math.max (0.1,potionProduction) ;
+    potionPrice = (int) Math.floor(potionPrice * (productionConsumptionRatio + 1/Math.max(0.3, potionLastsForDays)));
     return Math.max(potionPrice, MIN_PRICE);
   }
 
