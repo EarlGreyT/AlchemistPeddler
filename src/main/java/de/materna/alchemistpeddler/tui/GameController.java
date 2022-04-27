@@ -29,18 +29,18 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
   public static final String ROB_TEXT = """
       Your legs feel a little shaky as you set foot into the harbour.
                   
-      Another Passenger forces his way to the exit and pushes you aside, but he is long gone
+      Another passenger forces his way to the exit and pushes you aside, but he is long gone
       when you notice that you  are missing some of your hard earned gold.
                   
       You have to make due with: 
       """;
   public static final String STRANGE_MARKET_TEXT = """
-      A Newspaper stand catches your attention, as most papers headlines look 
+      A newspaper stand catches your attention, as most papers headlines look 
       similar to: 
       """;
   public static final String POTION_CRAZE_TEXT = """
       You already heard a lot of chatter during your travels, 
-      but as you set foot into the City you realize just how many People are consuming 
+      but as you set foot into the City you realize just how many people are consuming 
       """;
   public static final String POTION_CRAZE_TEXT_PART_2 = " potions.\n This might be a great business opportunity.";
   public static final String BORING_TRAVEL_TEXT = """
@@ -72,10 +72,9 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
       shopFactory.updateShopLabels();
     }
     if (gameWindow != null) {
-      gameWindow.getGamePanel().getPlayerPanel().getPlayerDataPanel()
-          .update(lastGameState.playerRecord());
+      GamePanel gamePanel = gameWindow.getGamePanel();
+      gamePanel.getPlayerPanel().getPlayerDataPanel().update(lastGameState.playerRecord());
       if (gameState.playerRecord().hasLost()) {
-        GamePanel gamePanel = gameWindow.getGamePanel();
         gamePanel.gameLost();
         new ActionListDialogBuilder().setTitle("Do you wish to play a new Game?")
             .addAction("Yes", () -> {
@@ -86,7 +85,6 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
             }).addAction("No", () -> System.exit(0)).build().showDialog(gui);
       }
       if (gameState.playerRecord().hasWon()) {
-        GamePanel gamePanel = gameWindow.getGamePanel();
         gamePanel.gameWon();
 
         new ActionListDialogBuilder().setTitle("Do you wish to play a new Game?")

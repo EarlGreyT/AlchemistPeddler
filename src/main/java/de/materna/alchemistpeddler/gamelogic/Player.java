@@ -147,7 +147,7 @@ class Player {
     this.cityGraph = cityGraph;
   }
 
-  public int getDebt() {
+  int getDebt() {
     return debt;
   }
 }
