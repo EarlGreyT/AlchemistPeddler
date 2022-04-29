@@ -48,12 +48,13 @@ class Player {
 
   /**
    * Travels to another city, if the player can afford the trip.
+   *
    * @param dest - the city the player wishes to go to
    */
   void travel(City dest) {
     CITY_NAME locationName = CITY_NAME.valueOf(location.getName().toUpperCase());
     CITY_NAME destName = CITY_NAME.valueOf(dest.getName().toUpperCase());
-    int travelCost = cityGraph.getPrice(locationName,destName);
+    int travelCost = cityGraph.getPrice(locationName, destName);
     if (travelCost <= currency) {
       location = dest;
       currency = currency - travelCost;
@@ -62,16 +63,18 @@ class Player {
 
   /**
    * increases the amount of currency a player has, but also increases his debt
+   *
    * @param amount
    */
   void takeLoan(int amount) {
     currency = currency + amount;
-    debt= (int) (debt +  Math.floor(amount* LOAN_SHARK_RATE));
+    debt = (int) (debt + Math.floor(amount * LOAN_SHARK_RATE));
   }
 
   /**
-   * decreases the amount of currency a player has and decreases his debt,
-   * if he can spend that much money.
+   * decreases the amount of currency a player has and decreases his debt, if he can spend that much
+   * money.
+   *
    * @param amount
    */
   void payLoan(int amount) {
@@ -85,7 +88,8 @@ class Player {
   int getPotionCapacity() {
     return potionCapacity;
   }
-  void setPotionCapacity(int potionCapacity){
+
+  void setPotionCapacity(int potionCapacity) {
     this.potionCapacity = potionCapacity;
   }
 
@@ -106,14 +110,15 @@ class Player {
 
   /**
    * adds the specified amount of a potion to the inventory, if the player can pay for it.
+   *
    * @param potion
    * @param amount
    */
   void buy(Potion potion, int amount) {
     int price = location.price(potion);
-    if (checkInventoryCapacity(amount) && (price*amount) <= currency) {
+    if (checkInventoryCapacity(amount) && (price * amount) <= currency) {
       int amountBought = location.sellPotion(potion, amount);
-      currency -= price*amountBought;
+      currency -= price * amountBought;
       inventory[potion.ordinal()] += amountBought;
     }
   }
@@ -121,13 +126,14 @@ class Player {
   /**
    * decreases the amount of a potion in the inventory and raises the amount of currency the player,
    * according to the potion price in the current city.
+   *
    * @param potion
    * @param amount
    * @return
    */
   void sell(Potion potion, int amount) {
-    int amountToSell = Math.min(amount,inventory[potion.ordinal()]);
-    if (amountToSell != 0){
+    int amountToSell = Math.min(amount, inventory[potion.ordinal()]);
+    if (amountToSell != 0) {
       int amountSold = location.buyPotion(potion, amountToSell);
       currency += location.price(potion) * amountSold;
       inventory[potion.ordinal()] -= amountSold;
