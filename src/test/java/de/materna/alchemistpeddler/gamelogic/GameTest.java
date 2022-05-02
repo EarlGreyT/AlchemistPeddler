@@ -1,6 +1,5 @@
 package de.materna.alchemistpeddler.gamelogic;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -8,7 +7,6 @@ import static org.mockito.Mockito.times;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
-import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.tui.GameController;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

@@ -8,7 +8,7 @@ import com.googlecode.lanterna.gui2.GridLayout;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.Panel;
 import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
-import de.materna.alchemistpeddler.gameuicommunication.Potion;
+import de.materna.alchemistpeddler.gamelogic.Potion;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.AmountLabel;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.NameLabel;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels.PotionPanel;

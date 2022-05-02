@@ -6,7 +6,7 @@ import de.materna.alchemistpeddler.gamelogic.PlayerRecord;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
-import de.materna.alchemistpeddler.gameuicommunication.Potion;
+import de.materna.alchemistpeddler.gamelogic.Potion;
 import de.materna.alchemistpeddler.tui.GameController;
 import de.materna.alchemistpeddler.tui.TUIApp;
 import java.util.regex.Pattern;

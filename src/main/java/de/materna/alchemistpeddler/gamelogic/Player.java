@@ -1,7 +1,6 @@
 package de.materna.alchemistpeddler.gamelogic;
 
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
-import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +11,7 @@ class Player {
   private City location;
   private int potionCapacity = 10;
   private int currency = 500;
-  final int[] inventory = new int[Potion.values().length];
+  private final int[] inventory = new int[Potion.values().length];
   private boolean won = false;
   private int debt = 0;
   private boolean lost = false;
@@ -44,6 +43,10 @@ class Player {
 
   void setLost(boolean lost) {
     this.lost = lost;
+  }
+
+  public int[] getInventory() {
+    return inventory;
   }
 
   /**
