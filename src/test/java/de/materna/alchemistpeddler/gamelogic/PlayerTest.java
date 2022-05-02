@@ -2,6 +2,7 @@ package de.materna.alchemistpeddler.gamelogic;
 
 
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
+import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.BDDMockito.*;

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.times;
 import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
+import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.tui.GameController;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

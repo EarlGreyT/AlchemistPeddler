@@ -17,7 +17,7 @@ public class ActionTakeLoanButton extends Button {
           () -> {
             String input = new TextInputDialogBuilder()
                 .setTitle("How much?")
-                .setDescription("Enter the Amount of Gold you wish to lend")
+                .setDescription("Enter the Amount of Gold you wish to burrow")
                 .setValidationPattern(Pattern.compile("[0-9]*"), "You didn't enter a single number!")
                 .build()
                 .showDialog(TUIApp.gui);

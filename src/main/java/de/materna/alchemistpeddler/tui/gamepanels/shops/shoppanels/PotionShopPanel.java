@@ -3,7 +3,7 @@ package de.materna.alchemistpeddler.tui.gamepanels.shops.shoppanels;
 
 import com.googlecode.lanterna.gui2.GridLayout;
 import de.materna.alchemistpeddler.gamelogic.CityRecord;
-import de.materna.alchemistpeddler.gamelogic.Potion;
+import de.materna.alchemistpeddler.gameuicommunication.Potion;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.ShopPanel;
 
 

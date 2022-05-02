@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.gamelogic;
+package de.materna.alchemistpeddler.gameuicommunication;
 
 import de.materna.alchemistpeddler.gameuicommunication.Buyable;
 import java.util.Collection;
