@@ -24,7 +24,7 @@ public class Game implements PlayerEventListener {
   private GameStateListener gameStateListener;
   static final HashMap<String, City> cities = new HashMap<>();
   private CityGraph cityGraph = new CityGraph();
-  public Game(){
+  Game(){
     cityGraph.buildGraph(MIN_TRAVEL_PRICE, MAX_TRAVEL_PRICE);
     player = new Player(cityGraph);
     gameDay = 0;
@@ -49,7 +49,7 @@ public class Game implements PlayerEventListener {
    * @param event
    */
   @Override
-  public void getUpdate(PlayerEvent event) {
+  public void receivePlayerEvent(PlayerEvent event) {
     switch (event.action()) {
       case BUY -> {
         player.buy(Potion.values()[event.what()], event.amount());

@@ -1,4 +1,4 @@
-package de.materna.alchemistpeddler.tui;
+package de.materna.alchemistpeddler.gameuicommunication;
 
 
 import static de.materna.alchemistpeddler.tui.TUIApp.gameWindow;
@@ -8,9 +8,6 @@ import com.googlecode.lanterna.gui2.dialogs.ActionListDialogBuilder;
 import de.materna.alchemistpeddler.gamelogic.Game;
 import de.materna.alchemistpeddler.gamelogic.GameEvent.EventName;
 import de.materna.alchemistpeddler.gamelogic.GameState;
-import de.materna.alchemistpeddler.gameuicommunication.GameStateListener;
-import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
-import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import de.materna.alchemistpeddler.tui.gamepanels.EventPanel;
 import de.materna.alchemistpeddler.tui.gamepanels.GamePanel;
 import de.materna.alchemistpeddler.tui.gamepanels.shops.AbstractShopFactory;

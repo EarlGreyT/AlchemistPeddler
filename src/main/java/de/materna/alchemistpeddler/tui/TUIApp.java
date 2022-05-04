@@ -9,6 +9,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger;
+import de.materna.alchemistpeddler.gameuicommunication.GameController;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import java.io.IOException;
 

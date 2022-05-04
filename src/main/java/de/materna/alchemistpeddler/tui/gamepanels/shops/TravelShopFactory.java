@@ -20,6 +20,7 @@ public class TravelShopFactory extends AbstractShopFactory{
           .cityRecords().stream().filter(city -> city.name().equals(cityName.cityName))
           .toArray()[0];
       existingPanel = new TravelShopPanel(cityRecord);
+      shops.put(cityName,existingPanel);
     } else {
       updateShopLabels();
     }

@@ -8,7 +8,7 @@ import de.materna.alchemistpeddler.gameuicommunication.CITY_NAME;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerAction;
 import de.materna.alchemistpeddler.gameuicommunication.PlayerEvent;
 import de.materna.alchemistpeddler.gameuicommunication.Potion;
-import de.materna.alchemistpeddler.tui.GameController;
+import de.materna.alchemistpeddler.gameuicommunication.GameController;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -31,15 +31,15 @@ class GameTest {
     PlayerEvent testPayLoanEvent = new PlayerEvent(PlayerAction.PAYLOAN, 0,10);
     PlayerEvent testPlayerTravelEvent = new PlayerEvent(PlayerAction.TRAVEL,TEST_DESTINATION.ordinal(),0);
     //when
-    testGame.getUpdate(testBuyEvent);
+    testGame.receivePlayerEvent(testBuyEvent);
     Mockito.verify(mockPLayer, times(1)).buy(TEST_POTION,10);
-    testGame.getUpdate(testSellEvent);
+    testGame.receivePlayerEvent(testSellEvent);
     Mockito.verify(mockPLayer, times(1)).sell(TEST_POTION,10);
-    testGame.getUpdate(testTakeLoanEvent);
+    testGame.receivePlayerEvent(testTakeLoanEvent);
     Mockito.verify(mockPLayer, times(1)).takeLoan(10);
-    testGame.getUpdate(testPayLoanEvent);
+    testGame.receivePlayerEvent(testPayLoanEvent);
     Mockito.verify(mockPLayer, times(1)).payLoan(10);
-    testGame.getUpdate(testPlayerTravelEvent);
+    testGame.receivePlayerEvent(testPlayerTravelEvent);
     Mockito.verify(testGame, times(1)).nextDay();
     Mockito.verify(mockPLayer,times(1)).travel(testGame.getCities().get(cityName));
 
