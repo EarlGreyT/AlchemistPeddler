@@ -31,15 +31,15 @@ class GameTest {
     PlayerEvent testPayLoanEvent = new PlayerEvent(PlayerAction.PAYLOAN, 0,10);
     PlayerEvent testPlayerTravelEvent = new PlayerEvent(PlayerAction.TRAVEL,TEST_DESTINATION.ordinal(),0);
     //when
-    testGame.receivePlayerEvent(testBuyEvent);
+    testGame.onPlayerEvent(testBuyEvent);
     Mockito.verify(mockPLayer, times(1)).buy(TEST_POTION,10);
-    testGame.receivePlayerEvent(testSellEvent);
+    testGame.onPlayerEvent(testSellEvent);
     Mockito.verify(mockPLayer, times(1)).sell(TEST_POTION,10);
-    testGame.receivePlayerEvent(testTakeLoanEvent);
+    testGame.onPlayerEvent(testTakeLoanEvent);
     Mockito.verify(mockPLayer, times(1)).takeLoan(10);
-    testGame.receivePlayerEvent(testPayLoanEvent);
+    testGame.onPlayerEvent(testPayLoanEvent);
     Mockito.verify(mockPLayer, times(1)).payLoan(10);
-    testGame.receivePlayerEvent(testPlayerTravelEvent);
+    testGame.onPlayerEvent(testPlayerTravelEvent);
     Mockito.verify(testGame, times(1)).nextDay();
     Mockito.verify(mockPLayer,times(1)).travel(testGame.getCities().get(cityName));
 

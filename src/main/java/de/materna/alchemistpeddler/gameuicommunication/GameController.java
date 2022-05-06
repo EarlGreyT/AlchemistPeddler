@@ -62,7 +62,7 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
    * @param gameState - the new GameState
    */
   @Override
-  public GameState getGameState(GameState gameState) {
+  public GameState onGameStateChange(GameState gameState) {
     this.lastGameState = gameState;
     for (AbstractShopFactory shopFactory : shopFactories.values()) {
       // a new GameState can lead to new Prices, so we have to update our shops
@@ -102,7 +102,7 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
    * @return
    */
   @Override
-  public HashMap<EventName, String> getGameEventNotification(EventName event, String msg) {
+  public HashMap<EventName, String> onGameEvent(EventName event, String msg) {
     switch (event) {
       case ROB -> {
         EventPanel eventPanel = new EventPanel(ROB_TEXT + msg);
@@ -122,7 +122,7 @@ public class GameController implements PlayerEventGenerator, GameStateListener {
       }
     }
 
-    return GameStateListener.super.getGameEventNotification(event, msg);
+    return GameStateListener.super.onGameEvent(event, msg);
   }
 
   public GameState getLastGameState() {

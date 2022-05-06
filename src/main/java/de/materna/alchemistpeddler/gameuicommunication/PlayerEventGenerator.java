@@ -5,7 +5,7 @@ package de.materna.alchemistpeddler.gameuicommunication;
  */
 public interface PlayerEventGenerator {
   default void inform(PlayerEventListener subscriber, PlayerEvent event){
-    subscriber.receivePlayerEvent(event);
+    subscriber.onPlayerEvent(event);
   }
 
 

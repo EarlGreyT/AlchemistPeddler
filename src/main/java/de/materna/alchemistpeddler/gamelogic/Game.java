@@ -49,7 +49,7 @@ public class Game implements PlayerEventListener {
    * @param event
    */
   @Override
-  public void receivePlayerEvent(PlayerEvent event) {
+  public void onPlayerEvent(PlayerEvent event) {
     switch (event.action()) {
       case BUY -> {
         player.buy(Potion.values()[event.what()], event.amount());
@@ -108,14 +108,14 @@ public class Game implements PlayerEventListener {
         ((GameEvent<Void>) event).process(null);
       }
     }
-    gameStateListener.getGameEventNotification(eventName,msg);
+    gameStateListener.onGameEvent(eventName,msg);
   }
 
   private void updateGameState() {
     ArrayList<CityRecord> cityRecords = new ArrayList<>();
     cities.forEach((name, city) -> cityRecords.add(new CityRecord(city)));
     PlayerRecord playerRecord = new PlayerRecord(player);
-    gameStateListener.getGameState(
+    gameStateListener.onGameStateChange(
         new GameState(cityRecords, playerRecord, gameDay, MAX_DAYS, cityGraph));
   }
 

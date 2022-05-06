@@ -9,14 +9,14 @@ import java.util.HashMap;
  * <p> This is used to update the UI accordingly</p>
  */
 public interface GameStateListener {
-  default GameState getGameState(GameState gameState){
+  default GameState onGameStateChange(GameState gameState){
     return gameState;
   }
-  default HashMap<EventName,String> getGameEventNotification(EventName event){
-    return getGameEventNotification(event, "");
+  default HashMap<EventName,String> onGameEvent(EventName event){
+    return onGameEvent(event, "");
   }
 
-  default HashMap<EventName, String>  getGameEventNotification(EventName event, String msg){
+  default HashMap<EventName, String> onGameEvent(EventName event, String msg){
     HashMap<EventName, String> eventHashMap = new HashMap<>();
     eventHashMap.put(event,msg);
     return eventHashMap;
