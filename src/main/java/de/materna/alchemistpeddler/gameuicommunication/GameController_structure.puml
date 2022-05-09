@@ -45,8 +45,8 @@ config=StructureConfiguration;
     "cutConstructors": true
   },
   "graphTraversal": {
-    "forwardDepth": 1,
-    "backwardDepth": 1,
+    "forwardDepth": 3,
+    "backwardDepth": 3,
     "classPackageExcludeFilter": "",
     "classPackageIncludeFilter": "",
     "classNameExcludeFilter": "",
@@ -55,10 +55,10 @@ config=StructureConfiguration;
     "methodNameIncludeFilter": "",
     "hideMappings": false,
     "hideDataStructures": false,
-    "hidePrivateMethods": false,
+    "hidePrivateMethods": true,
     "hideInterfaceCalls": false, // indirection: implementation -> interface (is hidden) -> implementation
     "onlyShowApplicationEntryPoints": false, // root node is included
-    "useMethodCallsForStructureDiagram": "BothDirections" // ForwardOnly, BothDirections, No
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
   },
   "details": {
     "aggregation": "GroupByClass", // ByClass, GroupByClass, None
@@ -112,6 +112,105 @@ subgraph cluster_840931456 {
 	fillcolor="#FFFFFF"
 ];
 
+AmountLabel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AmountLabel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   type: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BuyablePanel739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BuyablePanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   amountLabels: List&lt;AmountLabel&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   cityRecord: CityRecord [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   nameLabel: NameLabel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+City171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)City</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionAmounts: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionConsumptions: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionProductions: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionsBought: int[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># buyPotion(potion: Potion, amount: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getArrAsList(arr: int[]): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" ># modifyPotionConsumption(potion: Potion, productionDelta: int)</TD></TR>
+<TR><TD ALIGN="LEFT" ># modifyPotionProduction(potion: Potion, productionDelta: int)</TD></TR>
+<TR><TD ALIGN="LEFT" ># price(potion: Potion): int</TD></TR>
+<TR><TD ALIGN="LEFT" ># sellPotion(potion: Potion, amount: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" ># update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CityGraph171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CityGraph</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   routes: EnumMap&lt;CITY_NAME, EnumMap&lt;CITY_NAME, Route&gt;&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ buildGraph(minPrice: int, maxPrice: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPrice(from: CITY_NAME, dest: CITY_NAME): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CityRecord171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CityRecord</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionAmounts: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionConsumptions: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionProductions: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prices: List&lt;Integer&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ name(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionAmounts(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionConsumptions(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionProductions(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ prices(): List&lt;Integer&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EventPanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EventPanel</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
 Game171409429[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(C)Game</TD></TR>
@@ -144,6 +243,30 @@ GameController1798247951[
 <TR><TD ALIGN="LEFT" >+ onGameEvent(event: EventName, msg: String): HashMap&lt;EventName, String&gt;</TD></TR>
 <TR><TD ALIGN="LEFT" >+ onGameStateChange(gameState: GameState): GameState</TD></TR>
 <TR><TD ALIGN="LEFT" >+ startNewGame()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameEvent171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)GameEvent&lt;T&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ process(target: T): EventName</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+GameEventFactory171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameEventFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># buildGameEvent(eventName: EventName): GameEvent</TD></TR>
 </TABLE>>
 	style=filled
 	margin=0
@@ -205,6 +328,29 @@ GameStateListener1798247951[
 	fillcolor="#F1E5FD"
 ];
 
+LocationPanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LocationPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   infoPanel: Component [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   interactionPanel: Component [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NameLabel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NameLabel</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
 PlayerDataPanel2071804120[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(C)PlayerDataPanel</TD></TR>
@@ -225,6 +371,24 @@ PlayerDataPanel2071804120[
 	fillcolor="#FFFFFF"
 ];
 
+PlayerEvent1798247951[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerEvent</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   action: PlayerAction [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   amount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   what: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ action(): PlayerAction</TD></TR>
+<TR><TD ALIGN="LEFT" >+ amount(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ what(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
 PlayerEventGenerator1798247951[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(I)PlayerEventGenerator</TD></TR>
@@ -237,11 +401,115 @@ PlayerEventGenerator1798247951[
 	fillcolor="#F1E5FD"
 ];
 
-TUIApp1330483847[
+PlayerEventListener1798247951[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(C)TUIApp</TD></TR>
+<TR><TD ALIGN="LEFT" >(I)PlayerEventListener</TD></TR>
 <HR/>
-<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onPlayerEvent(event: PlayerEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+PlayerPanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   playerActionPanel: Component [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerDataPanel: Component [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlayerRecord171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerRecord</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currency: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   debt: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   hasLost: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   hasWon: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inventory: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   location: CityRecord [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionCapacity: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ currency(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ debt(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ inventory(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ location(): CityRecord</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionCapacity(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PotionPanel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PotionPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amountLabel: AmountLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   priceLabel: AmountLabel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PotionShopFactory739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PotionShopFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getShop(cityName: CITY_NAME): ShopPanel</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ShopActionPanel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ShopActionPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   action: PlayerAction [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shopFactory: AbstractShopFactory [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ShopPanel739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ShopPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyablePanels: List&lt;BuyablePanel&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   cityRecord: CityRecord [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TravelShopFactory739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TravelShopFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getShop(cityName: CITY_NAME): ShopPanel</TD></TR>
 </TABLE>>
 	style=filled
 	margin=0
@@ -252,6 +520,21 @@ TUIApp1330483847[
 } 
 
 'edges    
+AbstractShopFactory739195383 -> PotionShopFactory739195383[arrowhead=none, arrowtail=empty, dir=both];
+AbstractShopFactory739195383 -> ShopActionPanel1397598788[label="sellShopActionPanel
+[0..1]"];
+AbstractShopFactory739195383 -> ShopActionPanel1397598788[label="shopActionPanel
+[0..1]"];
+AbstractShopFactory739195383 -> ShopPanel739195383[label="shops
+[0..*]"];
+AbstractShopFactory739195383 -> TravelShopFactory739195383[arrowhead=none, arrowtail=empty, dir=both];
+BuyablePanel739195383 -> PotionPanel1397598788[arrowhead=none, arrowtail=empty, dir=both];
+Game171409429 -> City171409429[label="nextDay() -> update()"];
+Game171409429 -> CityGraph171409429[label="cityGraph
+[0..1]"];
+Game171409429 -> GameEventFactory171409429[label="fireEvent() -> buildGameEvent()"];
+Game171409429 -> GameStateListener1798247951[label="gameStateListener
+[0..1]"];
 GameController1798247951 -> AbstractShopFactory739195383[label="shopFactories
 [0..*]"];
 GameController1798247951 -> Game171409429[label="game
@@ -259,9 +542,38 @@ GameController1798247951 -> Game171409429[label="game
 GameController1798247951 -> GameState171409429[label="lastGameState
 [0..1]"];
 GameController1798247951 -> PlayerDataPanel2071804120[label="onGameStateChange() -> update()"];
+GamePanel2071804120 -> EventPanel2071804120[label="eventPanel
+[0..1]"];
+GamePanel2071804120 -> LocationPanel2071804120[label="locationPanel
+[0..1]"];
+GamePanel2071804120 -> PlayerPanel2071804120[label="playerPanel
+[0..1]"];
+GameState171409429 -> CityGraph171409429[label="cityGraph
+[0..1]"];
+GameState171409429 -> CityRecord171409429[label="cityRecords
+[0..*]"];
+GameState171409429 -> PlayerRecord171409429[label="playerRecord
+[0..1]"];
 GameStateListener1798247951 -> GameController1798247951[arrowhead=none, arrowtail=empty, dir=both];
+PlayerDataPanel2071804120 -> AmountLabel1397598788[label="currentDay
+[0..1]"];
+PlayerDataPanel2071804120 -> AmountLabel1397598788[label="debtLabel
+[0..1]"];
+PlayerDataPanel2071804120 -> AmountLabel1397598788[label="goldLabel
+[0..1]"];
+PlayerDataPanel2071804120 -> CityRecord171409429[label="update() -> name()"];
+PlayerDataPanel2071804120 -> GameState171409429[label="update() -> gameDay()"];
+PlayerDataPanel2071804120 -> NameLabel1397598788[label="cityLabel
+[0..1]"];
+PlayerDataPanel2071804120 -> PotionPanel1397598788[label="potionPanels
+[0..*]"];
 PlayerEventGenerator1798247951 -> GameController1798247951[arrowhead=none, arrowtail=empty, dir=both];
-TUIApp1330483847 -> GameController1798247951[label="main() -> startNewGame()"];
+PlayerEventGenerator1798247951 -> PlayerEventListener1798247951[label="inform() -> onPlayerEvent()"];
+PlayerEventListener1798247951 -> Game171409429[arrowhead=none, arrowtail=empty, dir=both];
+PotionPanel1397598788 -> AmountLabel1397598788[label="amountLabel
+[0..1]"];
+PotionPanel1397598788 -> AmountLabel1397598788[label="priceLabel
+[0..1]"];
     
 }
 @enduml

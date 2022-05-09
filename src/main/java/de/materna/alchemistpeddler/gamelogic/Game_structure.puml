@@ -55,8 +55,8 @@ config=StructureConfiguration;
     "methodNameIncludeFilter": "",
     "hideMappings": false,
     "hideDataStructures": false,
-    "hidePrivateMethods": false,
-    "hideInterfaceCalls": false, // indirection: implementation -> interface (is hidden) -> implementation
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
     "onlyShowApplicationEntryPoints": false, // root node is included
     "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
   },
@@ -146,7 +146,7 @@ Game171409429[
 <TR><TD ALIGN="LEFT" >- checkWinCondition()</TD></TR>
 <TR><TD ALIGN="LEFT" >- fireEvent()</TD></TR>
 <TR><TD ALIGN="LEFT" ># nextDay()</TD></TR>
-<TR><TD ALIGN="LEFT" >+ receivePlayerEvent(event: PlayerEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onPlayerEvent(event: PlayerEvent)</TD></TR>
 <TR><TD ALIGN="LEFT" >- updateGameState()</TD></TR>
 </TABLE>>
 	style=filled
@@ -163,26 +163,14 @@ GameController1798247951[
 <TR><TD ALIGN="LEFT" >-   lastGameState: GameState [0..1]</TD></TR>
 <TR><TD ALIGN="LEFT" >+   shopFactories: EnumMap&lt;PlayerAction, AbstractShopFactory&gt; [0..*]</TD></TR>
 <HR/>
-<TR><TD ALIGN="LEFT" >+ getGameEventNotification(event: EventName, msg: String): HashMap&lt;EventName, String&gt;</TD></TR>
-<TR><TD ALIGN="LEFT" >+ getGameState(gameState: GameState): GameState</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onGameEvent(event: EventName, msg: String): HashMap&lt;EventName, String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onGameStateChange(gameState: GameState): GameState</TD></TR>
 <TR><TD ALIGN="LEFT" >+ startNewGame()</TD></TR>
 </TABLE>>
 	style=filled
 	margin=0
 	shape=plaintext
 	fillcolor="#FFFFFF"
-];
-
-GameEvent171409429[
-	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(I)GameEvent&lt;T&gt;</TD></TR>
-<HR/>
-<TR><TD ALIGN="LEFT" >+ process(target: T): EventName</TD></TR>
-</TABLE>>
-	style=filled
-	margin=0
-	shape=plaintext
-	fillcolor="#F1E5FD"
 ];
 
 GameEventFactory171409429[
@@ -195,20 +183,6 @@ GameEventFactory171409429[
 	margin=0
 	shape=plaintext
 	fillcolor="#FFFFFF"
-];
-
-GameStateListener1798247951[
-	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(I)GameStateListener</TD></TR>
-<HR/>
-<TR><TD ALIGN="LEFT" >+ getGameEventNotification(event: EventName): HashMap&lt;EventName, String&gt;</TD></TR>
-<TR><TD ALIGN="LEFT" >+ getGameEventNotification(event: EventName, msg: String): HashMap&lt;EventName, String&gt;</TD></TR>
-<TR><TD ALIGN="LEFT" >+ getGameState(gameState: GameState): GameState</TD></TR>
-</TABLE>>
-	style=filled
-	margin=0
-	shape=plaintext
-	fillcolor="#F1E5FD"
 ];
 
 PlayerEvent1798247951[
@@ -228,18 +202,6 @@ PlayerEvent1798247951[
 	shape=plaintext
 	fillcolor="#FFFFFF"
 ];
-
-PlayerEventListener1798247951[
-	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(I)PlayerEventListener</TD></TR>
-<HR/>
-<TR><TD ALIGN="LEFT" >+ receivePlayerEvent(event: PlayerEvent)</TD></TR>
-</TABLE>>
-	style=filled
-	margin=0
-	shape=plaintext
-	fillcolor="#F1E5FD"
-];
 } 
 } 
 
@@ -247,12 +209,10 @@ PlayerEventListener1798247951[
 Game171409429 -> City171409429[label="nextDay() -> update()"];
 Game171409429 -> CityGraph171409429[label="cityGraph
 [0..1]"];
+Game171409429 -> GameController1798247951[arrowhead=none];
 Game171409429 -> GameEventFactory171409429[label="fireEvent() -> buildGameEvent()"];
-Game171409429 -> GameStateListener1798247951[label="gameStateListener
-[0..1]"];
 GameController1798247951 -> Game171409429[label="game
 [0..1]"];
-PlayerEventListener1798247951 -> Game171409429[arrowhead=none, arrowtail=empty, dir=both];
     
 }
 @enduml

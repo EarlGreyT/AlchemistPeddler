@@ -14,7 +14,7 @@ import de.materna.alchemistpeddler.gameuicommunication.PlayerEventGenerator;
 import java.io.IOException;
 
 
-public class TUIApp implements PlayerEventGenerator {
+public class TUIApp {
 
   public static GameController gameController = new GameController();
   public static GameWindow gameWindow;
