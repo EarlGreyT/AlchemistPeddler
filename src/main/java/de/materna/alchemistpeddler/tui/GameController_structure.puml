@@ -1,0 +1,377 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 2,
+    "backwardDepth": 1,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "de.materna.alchemistpeddler.tui.GameController",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_840931456 { 
+   	label=materna
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1737524960 { 
+   	label=alchemistpeddler
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AbstractShopFactory739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AbstractShopFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   sellShopActionPanel: ShopActionPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shopActionPanel: ShopActionPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shops: HashMap&lt;CITY_NAME, ShopPanel&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getShop(city_name: CITY_NAME): ShopPanel</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateShopLabels()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+AmountLabel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AmountLabel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   type: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CityRecord171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CityRecord</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionAmounts: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionConsumptions: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionProductions: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prices: List&lt;Integer&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ name(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionAmounts(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionConsumptions(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionProductions(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ prices(): List&lt;Integer&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EventPanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EventPanel</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Game171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Game</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cityGraph: CityGraph [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameDay: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameStateListener: GameStateListener [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   player: Player [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- checkWinCondition()</TD></TR>
+<TR><TD ALIGN="LEFT" >- fireEvent()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getUpdate(event: PlayerEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># nextDay()</TD></TR>
+<TR><TD ALIGN="LEFT" >- updateGameState()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameController1330483847[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   game: Game [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastGameState: GameState [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shopFactories: EnumMap&lt;PlayerAction, AbstractShopFactory&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getGameEventNotification(event: EventName, msg: String): HashMap&lt;EventName, String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getGameState(gameState: GameState): GameState</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startNewGame()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GamePanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GamePanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   eventPanel: EventPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   infoField: Panel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   locationPanel: LocationPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerPanel: PlayerPanel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ gameLost()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ gameWon()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameState171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameState</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cityGraph: CityGraph [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cityRecords: List&lt;CityRecord&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameDay: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastDay: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerRecord: PlayerRecord [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ cityGraph(): CityGraph</TD></TR>
+<TR><TD ALIGN="LEFT" >+ cityRecords(): List&lt;CityRecord&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ gameDay(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ lastDay(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ playerRecord(): PlayerRecord</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LocationPanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LocationPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   infoPanel: Component [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   interactionPanel: Component [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NameLabel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NameLabel</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlayerDataPanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerDataPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   cityLabel: NameLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   currentDay: AmountLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   debtLabel: AmountLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   goldLabel: AmountLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   playerData: Panel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   playerPotions: Panel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionPanels: EnumMap&lt;Potion, PotionPanel&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update(playerRecord: PlayerRecord)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlayerPanel2071804120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   playerActionPanel: Component [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerDataPanel: Component [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlayerRecord171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerRecord</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currency: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   debt: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   hasLost: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   hasWon: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inventory: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   location: CityRecord [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionCapacity: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ currency(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ debt(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ inventory(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ location(): CityRecord</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionCapacity(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PotionPanel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PotionPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amountLabel: AmountLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   priceLabel: AmountLabel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TUIApp1330483847[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TUIApp</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+Game171409429 -> GameController1330483847[label="gameStateListener
+[0..1]", arrowhead=none];
+GameController1330483847 -> AbstractShopFactory739195383[label="shopFactories
+[0..*]"];
+GameController1330483847 -> Game171409429[arrowhead=none];
+GameController1330483847 -> GameState171409429[label="lastGameState
+[0..1]"];
+GameController1330483847 -> PlayerDataPanel2071804120[label="getGameState() -> update()"];
+GameController1330483847 -> TUIApp1330483847[arrowhead=none];
+GamePanel2071804120 -> EventPanel2071804120[label="eventPanel
+[0..1]"];
+GamePanel2071804120 -> LocationPanel2071804120[label="locationPanel
+[0..1]"];
+GamePanel2071804120 -> PlayerPanel2071804120[label="playerPanel
+[0..1]"];
+PlayerDataPanel2071804120 -> AmountLabel1397598788[label="currentDay
+[0..1]"];
+PlayerDataPanel2071804120 -> AmountLabel1397598788[label="debtLabel
+[0..1]"];
+PlayerDataPanel2071804120 -> AmountLabel1397598788[label="goldLabel
+[0..1]"];
+PlayerDataPanel2071804120 -> CityRecord171409429[label="update() -> name()"];
+PlayerDataPanel2071804120 -> GameState171409429[label="update() -> gameDay()"];
+PlayerDataPanel2071804120 -> NameLabel1397598788[label="cityLabel
+[0..1]"];
+PlayerDataPanel2071804120 -> PotionPanel1397598788[label="potionPanels
+[0..*]"];
+    
+}
+@enduml

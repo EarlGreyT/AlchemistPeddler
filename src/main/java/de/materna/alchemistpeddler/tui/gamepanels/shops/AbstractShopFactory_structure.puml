@@ -1,0 +1,248 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 2,
+    "backwardDepth": 2,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": false,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "BothDirections" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "de.materna.alchemistpeddler.tui.gamepanels.shops.AbstractShopFactory",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_840931456 { 
+   	label=materna
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1737524960 { 
+   	label=alchemistpeddler
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AbstractShopFactory739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AbstractShopFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   sellShopActionPanel: ShopActionPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shopActionPanel: ShopActionPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shops: HashMap&lt;CITY_NAME, ShopPanel&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getShop(city_name: CITY_NAME): ShopPanel</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateShopLabels()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CityRecord171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CityRecord</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionAmounts: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionConsumptions: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potionProductions: List&lt;Integer&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prices: List&lt;Integer&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ name(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionAmounts(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionConsumptions(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ potionProductions(): List&lt;Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ prices(): List&lt;Integer&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameController1798247951[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   game: Game [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastGameState: GameState [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shopFactories: EnumMap&lt;PlayerAction, AbstractShopFactory&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getGameEventNotification(event: EventName, msg: String): HashMap&lt;EventName, String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getGameState(gameState: GameState): GameState</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startNewGame()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameState171409429[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameState</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cityGraph: CityGraph [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cityRecords: List&lt;CityRecord&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameDay: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastDay: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerRecord: PlayerRecord [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ cityGraph(): CityGraph</TD></TR>
+<TR><TD ALIGN="LEFT" >+ cityRecords(): List&lt;CityRecord&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ gameDay(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ lastDay(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ playerRecord(): PlayerRecord</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PotionShopFactory739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PotionShopFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getShop(cityName: CITY_NAME): ShopPanel</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ShopActionPanel1397598788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ShopActionPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   action: PlayerAction [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shopFactory: AbstractShopFactory [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ShopPanel739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ShopPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyablePanels: List&lt;BuyablePanel&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   cityRecord: CityRecord [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TravelShopFactory739195383[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TravelShopFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getShop(cityName: CITY_NAME): ShopPanel</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+AbstractShopFactory739195383 -> PotionShopFactory739195383[arrowhead=none, arrowtail=empty, dir=both];
+AbstractShopFactory739195383 -> ShopActionPanel1397598788[label="sellShopActionPanel
+[0..1]"];
+AbstractShopFactory739195383 -> ShopActionPanel1397598788[label="shopActionPanel
+[0..1]"];
+AbstractShopFactory739195383 -> ShopPanel739195383[label="shops
+[0..*]"];
+AbstractShopFactory739195383 -> TravelShopFactory739195383[arrowhead=none, arrowtail=empty, dir=both];
+GameController1798247951 -> AbstractShopFactory739195383[label="shopFactories
+[0..*]"];
+ShopActionPanel1397598788 -> AbstractShopFactory739195383[label="shopFactory
+[0..1]"];
+TravelShopFactory739195383 -> CityRecord171409429[label="getShop() -> name()"];
+TravelShopFactory739195383 -> GameState171409429[label="getShop() -> cityRecords()"];
+    
+}
+@enduml

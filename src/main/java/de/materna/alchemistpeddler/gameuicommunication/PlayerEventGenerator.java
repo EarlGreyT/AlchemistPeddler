@@ -7,6 +7,4 @@ public interface PlayerEventGenerator {
   default void inform(PlayerEventListener subscriber, PlayerEvent event){
     subscriber.onPlayerEvent(event);
   }
-
-
 }
